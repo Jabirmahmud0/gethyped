@@ -79,22 +79,11 @@ const Navbar = () => {
 
         <div className="relative z-50 flex items-center gap-3">
           <GetResultsButton className="hidden lg:inline-flex" />
-          <HamburgerMenu isOpen={isMenuOpen} onToggle={toggleMenu} />
-        </div>
-      </div>
-
-      <div
-        className={`fixed inset-0 z-30 bg-black px-5 pb-8 pt-28 transition-transform duration-500 lg:hidden ${
-          isMenuOpen ? 'translate-y-0' : '-translate-y-full'
-        }`}
-      >
-        <div className="flex h-full flex-col justify-between">
-          <div className="flex flex-col gap-3">
-            {navLinks.map((link) => (
-              <NavLink key={link.href} {...link} onClick={closeMenu} />
-            ))}
-          </div>
-          <GetResultsButton className="justify-center py-4 text-base" onClick={closeMenu} />
+          <HamburgerMenu
+            isOpen={isMenuOpen}
+            onToggle={toggleMenu}
+            onClose={closeMenu}
+          />
         </div>
       </div>
     </nav>
