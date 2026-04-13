@@ -1,1 +1,243 @@
 @import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --color-brand-red: #FF4C24;
+  --color-brand-blue: #0052FF;
+  --color-brand-green: #00D084;
+  --color-brand-pink: #FCB8FA;
+  --color-bg-light: #FAF4EC;
+  --color-bg-dark: #131313;
+}
+
+body {
+  background-color: var(--color-bg-light);
+  color: var(--color-bg-dark);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Hide scrollbar */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  animation: marquee 30s linear infinite;
+}
+
+/* Button Default (Scale + Tilt) */
+.button-default {
+  --bounce-ease: cubic-bezier(0.34, 2.27, 0.64, 1);
+  --border-radius-ease: cubic-bezier(0.34, 1.37, 0.64, 1);
+  --speed: 0.45s;
+  --speed-fast: 0.3s;
+  --speed-faster: 0.15s;
+  display: inline-block;
+  cursor: pointer;
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.button-default__inner {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.5rem;
+  transition: transform var(--speed) var(--bounce-ease);
+  will-change: transform;
+  z-index: 1;
+}
+
+.button-default__background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 0.75em;
+  transition: border-radius var(--speed) var(--border-radius-ease), width var(--speed) var(--bounce-ease);
+  z-index: -1;
+}
+
+.button-default__text {
+  position: relative;
+  z-index: 2;
+  font-weight: 500;
+}
+
+.button-default__icon {
+  position: relative;
+  z-index: 2;
+  margin-left: 0.5rem;
+  transition: transform var(--speed-faster) ease-out;
+  will-change: transform;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .button-default:hover .button-default__background,
+  .button-default:focus-visible .button-default__background {
+    border-radius: 0.5em;
+    width: calc(100% - 0.5em);
+  }
+  .button-default:hover .button-default__inner,
+  .button-default:focus-visible .button-default__inner {
+    transform: skewY(-4deg) rotate(-1deg) scale(1.02);
+  }
+  .button-default:active .button-default__inner {
+    transform: scale(0.95);
+  }
+  .button-default:hover .button-default__icon,
+  .button-default:focus-visible .button-default__icon {
+    transform: scale(0.92);
+  }
+}
+
+/* Hero Card Animations */
+.hero-card {
+  --bounce-ease: cubic-bezier(0.34, 2.27, 0.64, 1);
+  --smooth-ease: cubic-bezier(.32, .72, 0, 1);
+  --elastic-ease-out: linear( 0, 0.5737 7.6%, 0.8382 11.87%, 0.9463 14.19%, 1.0292 16.54%, 1.0886 18.97%, 1.1258 21.53%, 1.137 22.97%, 1.1424 24.48%, 1.1423 26.1%, 1.1366 27.86%, 1.1165 31.01%, 1.0507 38.62%, 1.0219 42.57%, 0.9995 46.99%, 0.9872 51.63%, 0.9842 58.77%, 1.0011 81.26%, 1);
+  
+  transition: transform 0.45s var(--bounce-ease), box-shadow 0.45s var(--bounce-ease);
+  will-change: transform;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-card:hover {
+  transform: scale(1.05) translateY(-10px) rotate(0deg) !important;
+  box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.3);
+  z-index: 50 !important;
+}
+
+.hero-card__bg {
+  position: absolute;
+  inset: -5%;
+  width: 110%;
+  height: 110%;
+  transition: transform 0.6s var(--smooth-ease);
+  z-index: 0;
+  object-fit: cover;
+}
+
+.hero-card:hover .hero-card__bg {
+  transform: scale(1.08) translate(1%, 1%);
+}
+
+.hero-card__content {
+  position: relative;
+  z-index: 10;
+  transition: transform 0.75s var(--elastic-ease-out);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.hero-card:hover .hero-card__content {
+  transform: translateY(-8px);
+}
+
+.hero-card__text-group {
+  transition: transform 0.75s var(--elastic-ease-out), opacity 0.2s ease-out;
+}
+
+.hero-card:hover .hero-card__text-group {
+  transform: translateY(-4px);
+}
+
+.button-color-swoosh {
+  --elastic-ease-out: linear( 0, 0.5737 7.6%, 0.8382 11.87%, 0.9463 14.19%, 1.0292 16.54%, 1.0886 18.97%, 1.1258 21.53%, 1.137 22.97%, 1.1424 24.48%, 1.1423 26.1%, 1.1366 27.86%, 1.1165 31.01%, 1.0507 38.62%, 1.0219 42.57%, 0.9995 46.99%, 0.9872 51.63%, 0.9842 58.77%, 1.0011 81.26%, 1);
+  --smooth-ease: cubic-bezier(.32, .72, 0, 1);
+  --color-ease: cubic-bezier(.215, .61, .355, 1);
+  transition: transform .45s var(--elastic-ease-out);
+  -webkit-tap-highlight-color: transparent;
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+}
+
+.button-color-swoosh:active {
+  transform: scaleX(0.955) scaleY(0.954);
+}
+
+.button-color-swoosh_bg {
+  transition: scale .45s var(--smooth-ease), background-color .2s var(--color-ease);
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  border-radius: 0.5rem;
+}
+
+.button-color-swoosh_bg-inner {
+  translate: -10% 100% 0;
+  rotate: 0 0 1 -12deg;
+  transition: translate .6s var(--smooth-ease), rotate .5s var(--smooth-ease);
+  transition-delay: calc((var(--index) * -1) * .042s);
+  position: absolute;
+  inset: -10%;
+  background-color: currentColor;
+}
+
+.button-color-swoosh_inner {
+  display: block;
+  position: relative;
+  padding: 0.5rem 1rem;
+}
+
+.button-color-swoosh_inner::after {
+  content: attr(data-text);
+  color: #f0ece5;
+  display: block;
+  grid-area: 1 / 1;
+  translate: 0 2em 0;
+  rotate: 1 1 .5 -30deg;
+  transform-origin: top right;
+  transition: translate .75s var(--elastic-ease-out), rotate .5s var(--smooth-ease), opacity .2s ease-out;
+  position: absolute;
+  top: 0.5rem;
+  left: 1rem;
+  opacity: 0;
+}
+
+.button-color-swoosh_text {
+  transition: translate .75s var(--elastic-ease-out), rotate .5s var(--smooth-ease), opacity .2s ease-out, color .2s var(--color-ease);
+  display: block;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .button-color-swoosh:is(:hover, :focus-visible) .button-color-swoosh_bg {
+    scale: 1.065 1.095;
+  }
+  .button-color-swoosh:is(:hover, :focus-visible) .button-color-swoosh_bg-inner {
+    translate: -10% 0 0;
+    rotate: 0 0 1 0deg;
+    transition-delay: calc(var(--index) * .064s);
+  }
+  .button-color-swoosh:is(:hover, :focus-visible) .button-color-swoosh_text {
+    rotate: 1 1 0.45 -60deg;
+    translate: 0 -2em 0;
+    opacity: 0;
+  }
+  .button-color-swoosh:is(:hover, :focus-visible) .button-color-swoosh_inner::after {
+    rotate: 1 1 .45 0deg;
+    translate: 0 0 0;
+    opacity: 1;
+    transition-delay: .1s;
+  }
+}
