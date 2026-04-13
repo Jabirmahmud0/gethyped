@@ -1,6 +1,7 @@
 import Navbar from './components/Navbar/Navbar'
 import Hero from './components/Hero/Hero'
 import Results from './components/Results/Results'
+import Expertises from './components/Expertises/Expertises'
 
 const App = () => {
   return (
@@ -8,6 +9,7 @@ const App = () => {
       <Navbar />
       <Hero />
       <Results />
+      <Expertises />
     </main>
   )
 }
