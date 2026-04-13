@@ -3,7 +3,7 @@ import { navLinks } from '../../data/data'
 const FireIcon = () => (
   <svg
     aria-hidden="true"
-    className="h-5 w-4 fill-current"
+    className="h-4 w-3.5 fill-current"
     viewBox="0 0 20 24"
     xmlns="http://www.w3.org/2000/svg"
   >
@@ -11,35 +11,48 @@ const FireIcon = () => (
   </svg>
 )
 
-const MobileGetResultsButton = ({ onClick }) => (
-  <a
-    className="group inline-block overflow-hidden rounded-[0.75rem] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#131313] focus-visible:ring-offset-2 focus-visible:ring-offset-[#faf4ec]"
-    href="#contact"
-    onClick={onClick}
+const SmallLogo = () => (
+  <svg
+    aria-hidden="true"
+    className="h-7 w-16"
+    viewBox="0 0 208 84"
+    xmlns="http://www.w3.org/2000/svg"
   >
-    <span className="relative flex items-center">
-      <span className="absolute inset-0 rounded-[0.75rem] bg-[#131313] transition-all duration-[450ms] ease-[cubic-bezier(0.34,2.27,0.64,1)] group-hover:w-[calc(100%-0.5rem)] group-hover:rounded-[0.5rem]" />
-      <span className="relative z-10 flex items-center gap-2 px-5 py-4 text-[0.95rem] font-medium text-[#f0ece5] transition-transform duration-[450ms] ease-[cubic-bezier(0.34,2.27,0.64,1)] group-hover:scale-[1.02] group-hover:rotate-[-1deg] group-hover:skew-y-[-4deg]">
-        <span>Get Results</span>
-        <span className="text-[#f0ece5] transition-transform duration-150 ease-out group-hover:scale-90">
-          <FireIcon />
-        </span>
-      </span>
-    </span>
-  </a>
+    <path className="fill-[#FAF4EC]" d="M207.793 18.4091V68.8219C207.793 77.2049 200.998 84 192.615 84H7.46524C3.34207 84 0 80.6579 0 76.5348V37.5951C0 33.8732 2.69331 30.6933 6.36831 30.0829L186.384 0.251801C197.596 -1.60491 207.793 7.04266 207.793 18.4049" />
+    <path className="fill-black" d="M188.876 80.0646H55.9061V25.8317L186.618 5.34814C195.454 3.96521 203.444 10.7945 203.444 19.7408V65.4969C203.444 73.5427 196.922 80.0646 188.876 80.0646Z" />
+    <path className="fill-white" d="M71.2635 26.8177V47.2585L67.5415 47.5957V27.3683L59.9312 28.4866V76.7781L67.5415 76.7055V56.478L71.2635 56.2305V76.6714L79.3818 76.5945V25.6226L71.2635 26.8177Z" />
+    <path className="fill-white" d="M94.7092 23.3646L92.5452 42.7512L92.4427 44.4116L92.2378 44.4329L92.1354 42.7939L90.0055 24.0561L81.2256 25.3494L87.9482 58.2622V76.5134L96.8391 76.4323V57.75L104.142 21.9731L94.7092 23.3646Z" />
+    <path className="fill-white" d="M159.835 25.0207V13.7695L135.377 17.3719V76.0695L159.835 75.839V64.5921L147.179 65.0274V51.2238L159.101 50.4384V39.2854L147.179 40.3695V26.5701L159.835 25.0207Z" />
+    <path className="fill-white" d="M120.844 48.8506L116.226 49.2006V29.3018L120.844 28.7256V48.8506ZM105.943 21.7085V76.347L116.149 76.2488V58.5396L120.882 58.2878C127.071 57.9591 131.92 52.8457 131.92 46.6482V31.3805C131.92 24.2695 125.603 18.8146 118.565 19.8518L105.943 21.7128V21.7085Z" />
+    <path className="fill-white" d="M182.598 64.7713L176.494 64.9677V21.7768L182.598 21.0128V64.7713ZM162.993 13.3042V75.8091L185.769 75.5957C192.163 75.536 197.315 70.3372 197.315 63.9433V21.7469C197.315 14.636 190.998 9.18108 183.959 10.2183L162.989 13.3085L162.993 13.3042Z" />
+    <path className="fill-black" d="M21.5464 80.0646H34.7482V70.4738L27.1336 70.6957V59.8585L34.2873 59.4018V49.8835L27.1336 50.5494V39.7079L34.7482 38.739V29.1481L21.5464 31.214V80.0646Z" />
+    <path className="fill-black" d="M36.7714 28.828V38.4829L42.03 37.8128V80.0646H48.3812V37.0061L54.0239 36.289V26.1262L36.7714 28.828Z" />
+    <path className="fill-black" d="M14.2348 51.7488V41.2829L8.49394 42.0128V71.5152L14.2348 71.3488V62.6969L10.7092 62.8976V54.5146L19.5616 53.7634V80.0604H14.2391V77.3159L13.3128 78.225C12.1134 79.4031 10.5 80.0604 8.8226 80.0604H7.90491C5.48905 80.0604 3.53418 78.1012 3.53418 75.6896V39.0207C3.53418 36.1524 5.62563 33.7067 8.45978 33.2628L14.5165 32.3152C17.1671 31.9012 19.5659 33.95 19.5659 36.6305V51.2494L14.2433 51.7445L14.2348 51.7488Z" />
+  </svg>
 )
 
 const MenuLink = ({ href, label, ariaLabel, onClick }) => (
   <a
     aria-label={ariaLabel}
-    className="group relative block overflow-hidden rounded-full px-5 py-3.5 text-[2rem] font-semibold leading-none tracking-normal text-[#131313] transition-transform duration-300 hover:scale-[0.985] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#131313]"
+    className="rounded-full bg-white px-5 py-2.5 text-[0.95rem] font-bold text-[#131313] transition-all duration-300 hover:bg-[#131313] hover:text-[#f0ece5] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#131313]"
     href={href}
     onClick={onClick}
   >
-    <span className="absolute inset-0 translate-y-full rounded-full bg-[#ff4c24] transition-transform duration-500 ease-out group-hover:translate-y-0" />
-    <span className="absolute inset-0 translate-y-full rounded-full bg-[#131313] transition-transform duration-500 ease-out delay-75 group-hover:translate-y-0" />
-    <span className="relative z-10 transition-colors duration-300 group-hover:text-[#f0ece5]">
-      {label}
+    {label}
+  </a>
+)
+
+const MobileGetResultsButton = ({ onClick }) => (
+  <a
+    className="inline-flex items-center gap-2 rounded-xl bg-[#131313] px-5 py-3 text-[0.9rem] font-bold text-[#f0ece5] transition-all duration-300 hover:bg-[#333] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#faf4ec] focus-visible:ring-offset-2 focus-visible:ring-offset-[#ffb8eb]"
+    href="#contact"
+    onClick={onClick}
+  >
+    <span>Get Results</span>
+    <span className="flex items-center justify-center rounded-lg bg-white p-1.5">
+      <span className="text-[#ff4c24]">
+        <FireIcon />
+      </span>
     </span>
   </a>
 )
@@ -47,60 +60,79 @@ const MenuLink = ({ href, label, ariaLabel, onClick }) => (
 const HamburgerMenu = ({ isOpen, onToggle, onClose }) => {
   return (
     <>
+      {/* Hamburger trigger */}
       <button
         aria-expanded={isOpen}
         aria-label={isOpen ? 'Close menu' : 'Open menu'}
-        className={`relative z-50 flex h-12 w-12 items-center justify-center rounded-full border transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#131313] focus-visible:ring-offset-2 focus-visible:ring-offset-[#faf4ec] lg:hidden ${
-          isOpen
-            ? 'border-[#131313] bg-[#131313] text-[#f0ece5]'
-            : 'border-[#131313]/10 bg-[#faf4ec] text-[#131313]'
-        }`}
+        className="relative z-50 flex h-12 w-12 items-center justify-center rounded-full bg-[#faf4ec] transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#131313] focus-visible:ring-offset-2 focus-visible:ring-offset-[#faf4ec] lg:hidden"
         onClick={onToggle}
         type="button"
       >
-        <span className="relative h-3 w-6">
+        <span className="relative block h-3 w-6">
           <span
-            className={`absolute left-0 top-0 h-[2px] w-6 rounded-full bg-current transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] ${
-              isOpen ? 'top-1/2 -translate-y-1/2 rotate-45' : ''
+            className={`absolute left-0 h-[2px] w-6 rounded-full bg-[#131313] transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] ${
+              isOpen
+                ? 'top-1/2 -translate-y-1/2 rotate-45'
+                : 'top-0'
             }`}
           />
           <span
-            className={`absolute bottom-0 left-0 h-[2px] w-6 rounded-full bg-current transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] ${
-              isOpen ? 'bottom-1/2 translate-y-1/2 -rotate-45' : ''
+            className={`absolute left-0 h-[2px] w-6 rounded-full bg-[#131313] transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] ${
+              isOpen
+                ? 'top-1/2 -translate-y-1/2 -rotate-45'
+                : 'bottom-0'
             }`}
           />
         </span>
       </button>
 
+      {/* Full-screen pink overlay */}
       <div
-        className={`fixed inset-0 z-40 bg-black/25 transition-opacity duration-500 lg:hidden ${
+        className={`fixed inset-0 z-40 bg-[#ffb8eb] transition-opacity duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] lg:hidden ${
           isOpen ? 'pointer-events-auto opacity-100' : 'pointer-events-none opacity-0'
         }`}
-        onClick={onClose}
       />
 
+      {/* Content wrapper - 3 distinct sections */}
       <div
-        className={`fixed right-4 top-4 z-40 h-[calc(100vh-2rem)] w-[min(24rem,calc(100vw-2rem))] transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] lg:hidden ${
-          isOpen ? 'translate-x-0' : 'translate-x-[115%]'
+        className={`fixed inset-0 z-[45] flex flex-col transition-opacity duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] lg:hidden ${
+          isOpen ? 'pointer-events-auto opacity-100' : 'pointer-events-none opacity-0'
         }`}
       >
-        <div className="absolute inset-0 translate-x-0 rounded-[2rem] bg-[#131313]" />
-        <div
-          className={`absolute inset-0 rounded-[2rem] bg-[#ff4c24] transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] ${
-            isOpen ? 'translate-x-0' : 'translate-x-[8%]'
-          }`}
-        />
-        <aside className="absolute inset-0 rounded-[2rem] bg-[#faf4ec] px-5 pb-8 pt-20 text-[#131313] shadow-[0_24px_80px_rgba(19,19,19,0.18)]">
-          <div className="flex h-full flex-col justify-between">
-            <div className="flex flex-col gap-3">
-              {navLinks.map((link) => (
-                <MenuLink key={link.href} {...link} onClick={onClose} />
-              ))}
-            </div>
+        {/* Section 1: Top bar (logo + close) */}
+        <div className="flex-none px-6 pt-6">
+          <div className="flex items-center justify-between">
+            <a href="/" onClick={onClose}>
+              <SmallLogo />
+            </a>
+            <button
+              aria-label="Close menu"
+              className="flex h-8 w-8 items-center justify-center rounded-lg bg-white text-[#131313] transition-colors duration-300 hover:bg-[#f0ece5] focus:outline-none"
+              onClick={onClose}
+              type="button"
+            >
+              <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+          </div>
+        </div>
 
+        {/* Section 2: Centered nav links */}
+        <div className="flex-1 flex items-center justify-center">
+          <div className="flex flex-col items-center gap-3">
+            {navLinks.map((link) => (
+              <MenuLink key={link.href} {...link} onClick={onClose} />
+            ))}
+          </div>
+        </div>
+
+        {/* Section 3: Bottom Get Results */}
+        <div className="flex-none pb-10">
+          <div className="flex justify-center">
             <MobileGetResultsButton onClick={onClose} />
           </div>
-        </aside>
+        </div>
       </div>
     </>
   )

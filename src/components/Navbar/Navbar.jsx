@@ -25,7 +25,7 @@ const Logo = () => (
 const FireIcon = () => (
   <svg
     aria-hidden="true"
-    className="h-5 w-4 fill-current"
+    className="h-[1.125rem] w-[1rem] fill-current"
     viewBox="0 0 20 24"
     xmlns="http://www.w3.org/2000/svg"
   >
@@ -33,54 +33,56 @@ const FireIcon = () => (
   </svg>
 )
 
+// button-color-swoosh animation for nav links (matching original)
 const NavLink = ({ href, label, ariaLabel, onClick }) => (
   <a
     aria-label={ariaLabel}
-    className="group relative block overflow-hidden rounded-full px-4 py-2.5 text-[0.92rem] font-medium leading-none tracking-normal text-[#131313] transition-transform duration-300 hover:scale-[0.985] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#faf4ec]"
+    className="group relative inline-flex items-center justify-center overflow-hidden rounded-full focus:outline-none focus-visible:ring-2 focus-visible:ring-[#131313] focus-visible:ring-offset-2 focus-visible:ring-offset-[#faf4ec]"
     href={href}
     onClick={onClick}
   >
-    <span className="absolute inset-0 translate-y-full rounded-full bg-[#ff4c24] transition-transform duration-500 ease-out group-hover:translate-y-0" />
-    <span className="absolute inset-0 translate-y-full rounded-full bg-[#131313] transition-transform duration-500 ease-out delay-75 group-hover:translate-y-0" />
-    <span className="relative z-10 transition-colors duration-300 group-hover:text-[#f0ece5]">
-      {label}
+    {/* Background swoosh layers */}
+    <span className="absolute inset-0 transition-transform duration-[600ms] ease-[cubic-bezier(0.32,0.72,0,1)] translate-y-full group-hover:translate-y-0">
+      <span className="absolute inset-0 bg-[#ff4c24]" />
     </span>
-  </a>
-)
-
-const GetResultsButton = ({
-  backgroundClassName = 'bg-[#131313]',
-  className = '',
-  iconColorClassName = 'text-[#f0ece5]',
-  onClick,
-  textColorClassName = 'text-[#f0ece5]',
-}) => (
-  <a
-    className={`group inline-block overflow-hidden rounded-[0.75rem] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#131313] focus-visible:ring-offset-2 focus-visible:ring-offset-[#faf4ec] ${className}`}
-    href="#contact"
-    onClick={onClick}
-  >
-    <span className="relative flex items-center">
-      <span
-        className={`absolute inset-0 rounded-[0.75rem] transition-all duration-[450ms] ease-[cubic-bezier(0.34,2.27,0.64,1)] group-hover:w-[calc(100%-0.5rem)] group-hover:rounded-[0.5rem] ${backgroundClassName}`}
-      />
-      <span
-        className={`relative z-10 flex items-center gap-2 px-5 py-3 text-[0.92rem] font-medium transition-transform duration-[450ms] ease-[cubic-bezier(0.34,2.27,0.64,1)] group-hover:scale-[1.02] group-hover:rotate-[-1deg] group-hover:skew-y-[-4deg] ${textColorClassName}`}
-      >
-        <span>Get Results</span>
-        <span
-          className={`transition-transform duration-150 ease-out group-hover:scale-90 ${iconColorClassName}`}
-        >
-          <FireIcon />
-        </span>
+    <span
+      className="absolute inset-0 transition-transform duration-[600ms] ease-[cubic-bezier(0.32,0.72,0,1)] translate-y-full group-hover:translate-y-0"
+      style={{ transitionDelay: '64ms' }}
+    >
+      <span className="absolute inset-0 bg-[#131313]" />
+    </span>
+    {/* Text swap layers */}
+    <span className="relative z-10 flex items-center">
+      <span className="px-4 py-2.5 text-[0.92rem] font-bold text-[#131313] transition-all duration-[750ms] ease-[cubic-bezier(0.34,2.27,0.64,1)] group-hover:-translate-y-8 group-hover:rotate-[-60deg] group-hover:opacity-0 [transform-origin:top_right]">
+        {label}
+      </span>
+      <span className="absolute inset-0 flex items-center justify-center translate-y-8 rotate-[-30deg] opacity-0 transition-all duration-[750ms] ease-[cubic-bezier(0.34,2.27,0.64,1)] group-hover:translate-y-0 group-hover:rotate-0 group-hover:opacity-100 [transform-origin:top_right]">
+        <span className="px-4 py-2.5 text-[0.92rem] font-bold text-[#f0ece5]">{label}</span>
       </span>
     </span>
   </a>
 )
 
+// button-default is-nav (desktop Get Results) - matching original structure
 const DesktopGetResultsButton = () => (
   <div className="hidden lg:block">
-    <GetResultsButton className="shadow-[0_0_0_1px_rgba(19,19,19,0.06)]" />
+    <a
+      className="group inline-block overflow-hidden rounded-[0.75rem] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#131313] focus-visible:ring-offset-2 focus-visible:ring-offset-[#faf4ec]"
+      href="#contact"
+    >
+      {/* button-default__inner */}
+      <span className="relative block transition-transform duration-[450ms] ease-[cubic-bezier(0.34,2.27,0.64,1)] group-hover:-skew-y-[4deg] group-hover:-rotate-[1deg] group-hover:scale-[1.02] group-active:scale-95">
+        {/* button-default__background */}
+        <span className="absolute inset-0 rounded-[0.75rem] bg-[#ffb8eb] transition-all duration-[450ms] ease-[cubic-bezier(0.34,2.27,0.64,1)] group-hover:w-[calc(100%-0.5rem)] group-hover:rounded-[0.5rem]" />
+        {/* button-default__text + icon */}
+        <span className="relative z-10 flex items-center gap-2 px-5 py-3 text-[0.92rem] font-bold text-[#131313]">
+          <span>Get Results</span>
+          <span className="flex items-center justify-center rounded-lg bg-white p-1.5 transition-transform duration-[300ms] ease-[cubic-bezier(0.34,2.27,0.64,1)] group-hover:scale-90">
+            <FireIcon />
+          </span>
+        </span>
+      </span>
+    </a>
   </div>
 )
 
@@ -89,7 +91,7 @@ const Navbar = () => {
 
   return (
     <nav className="fixed left-0 top-0 z-40 w-full px-4 py-4 font-[Inter] sm:px-6 lg:px-10">
-      <div className="mx-auto flex max-w-[118rem] items-center justify-between gap-4">
+      <div className="mx-auto flex max-w-[1920px] items-center justify-between gap-4">
         <a
           aria-current="page"
           aria-label="Home link"
@@ -100,6 +102,7 @@ const Navbar = () => {
           <Logo />
         </a>
 
+        {/* Desktop nav links pill */}
         <div className="hidden items-center gap-1 rounded-full bg-white p-1 lg:flex">
           {navLinks.map((link) => (
             <NavLink key={link.href} {...link} />
