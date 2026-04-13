@@ -36,23 +36,52 @@ const FireIcon = () => (
 const NavLink = ({ href, label, ariaLabel, onClick }) => (
   <a
     aria-label={ariaLabel}
-    className="group relative block overflow-hidden rounded-full px-5 py-3 text-4xl font-semibold leading-none text-[#faf4ec] transition-colors duration-300 hover:bg-[#faf4ec] hover:text-black focus:outline-none focus-visible:ring-2 focus-visible:ring-[#faf4ec] lg:text-sm lg:font-medium"
+    className="group relative block overflow-hidden rounded-full px-4 py-2.5 text-[0.92rem] font-medium leading-none tracking-normal text-[#131313] transition-transform duration-300 hover:scale-[0.985] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#faf4ec]"
     href={href}
     onClick={onClick}
   >
-    {label}
+    <span className="absolute inset-0 translate-y-full rounded-full bg-[#ff4c24] transition-transform duration-500 ease-out group-hover:translate-y-0" />
+    <span className="absolute inset-0 translate-y-full rounded-full bg-[#131313] transition-transform duration-500 ease-out delay-75 group-hover:translate-y-0" />
+    <span className="relative z-10 transition-colors duration-300 group-hover:text-[#f0ece5]">
+      {label}
+    </span>
   </a>
 )
 
-const GetResultsButton = ({ className = '', onClick }) => (
+const GetResultsButton = ({
+  backgroundClassName = 'bg-[#131313]',
+  className = '',
+  iconColorClassName = 'text-[#f0ece5]',
+  onClick,
+  textColorClassName = 'text-[#f0ece5]',
+}) => (
   <a
-    className={`inline-flex items-center gap-2 rounded-full bg-[#faf4ec] px-5 py-3 text-sm font-semibold text-black transition-transform duration-300 hover:scale-95 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#faf4ec] focus-visible:ring-offset-2 focus-visible:ring-offset-black ${className}`}
+    className={`group inline-block overflow-hidden rounded-[0.75rem] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#131313] focus-visible:ring-offset-2 focus-visible:ring-offset-[#faf4ec] ${className}`}
     href="#contact"
     onClick={onClick}
   >
-    <span>Get Results</span>
-    <FireIcon />
+    <span className="relative flex items-center">
+      <span
+        className={`absolute inset-0 rounded-[0.75rem] transition-all duration-[450ms] ease-[cubic-bezier(0.34,2.27,0.64,1)] group-hover:w-[calc(100%-0.5rem)] group-hover:rounded-[0.5rem] ${backgroundClassName}`}
+      />
+      <span
+        className={`relative z-10 flex items-center gap-2 px-5 py-3 text-[0.92rem] font-medium transition-transform duration-[450ms] ease-[cubic-bezier(0.34,2.27,0.64,1)] group-hover:scale-[1.02] group-hover:rotate-[-1deg] group-hover:skew-y-[-4deg] ${textColorClassName}`}
+      >
+        <span>Get Results</span>
+        <span
+          className={`transition-transform duration-150 ease-out group-hover:scale-90 ${iconColorClassName}`}
+        >
+          <FireIcon />
+        </span>
+      </span>
+    </span>
   </a>
+)
+
+const DesktopGetResultsButton = () => (
+  <div className="hidden lg:block">
+    <GetResultsButton className="shadow-[0_0_0_1px_rgba(19,19,19,0.06)]" />
+  </div>
 )
 
 const Navbar = () => {
@@ -71,14 +100,14 @@ const Navbar = () => {
           <Logo />
         </a>
 
-        <div className="hidden items-center gap-2 rounded-full bg-black/35 p-1.5 backdrop-blur lg:flex">
+        <div className="hidden items-center gap-1 rounded-full bg-white p-1 lg:flex">
           {navLinks.map((link) => (
             <NavLink key={link.href} {...link} />
           ))}
         </div>
 
         <div className="relative z-50 flex items-center gap-3">
-          <GetResultsButton className="hidden lg:inline-flex" />
+          <DesktopGetResultsButton />
           <HamburgerMenu
             isOpen={isMenuOpen}
             onToggle={toggleMenu}

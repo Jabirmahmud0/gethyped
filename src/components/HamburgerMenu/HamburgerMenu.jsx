@@ -11,81 +11,97 @@ const FireIcon = () => (
   </svg>
 )
 
+const MobileGetResultsButton = ({ onClick }) => (
+  <a
+    className="group inline-block overflow-hidden rounded-[0.75rem] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#131313] focus-visible:ring-offset-2 focus-visible:ring-offset-[#faf4ec]"
+    href="#contact"
+    onClick={onClick}
+  >
+    <span className="relative flex items-center">
+      <span className="absolute inset-0 rounded-[0.75rem] bg-[#131313] transition-all duration-[450ms] ease-[cubic-bezier(0.34,2.27,0.64,1)] group-hover:w-[calc(100%-0.5rem)] group-hover:rounded-[0.5rem]" />
+      <span className="relative z-10 flex items-center gap-2 px-5 py-4 text-[0.95rem] font-medium text-[#f0ece5] transition-transform duration-[450ms] ease-[cubic-bezier(0.34,2.27,0.64,1)] group-hover:scale-[1.02] group-hover:rotate-[-1deg] group-hover:skew-y-[-4deg]">
+        <span>Get Results</span>
+        <span className="text-[#f0ece5] transition-transform duration-150 ease-out group-hover:scale-90">
+          <FireIcon />
+        </span>
+      </span>
+    </span>
+  </a>
+)
+
+const MenuLink = ({ href, label, ariaLabel, onClick }) => (
+  <a
+    aria-label={ariaLabel}
+    className="group relative block overflow-hidden rounded-full px-5 py-3.5 text-[2rem] font-semibold leading-none tracking-normal text-[#131313] transition-transform duration-300 hover:scale-[0.985] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#131313]"
+    href={href}
+    onClick={onClick}
+  >
+    <span className="absolute inset-0 translate-y-full rounded-full bg-[#ff4c24] transition-transform duration-500 ease-out group-hover:translate-y-0" />
+    <span className="absolute inset-0 translate-y-full rounded-full bg-[#131313] transition-transform duration-500 ease-out delay-75 group-hover:translate-y-0" />
+    <span className="relative z-10 transition-colors duration-300 group-hover:text-[#f0ece5]">
+      {label}
+    </span>
+  </a>
+)
+
 const HamburgerMenu = ({ isOpen, onToggle, onClose }) => {
   return (
     <>
       <button
-        aria-label={isOpen ? 'Close menu' : 'Open menu'}
         aria-expanded={isOpen}
+        aria-label={isOpen ? 'Close menu' : 'Open menu'}
+        className={`relative z-50 flex h-12 w-12 items-center justify-center rounded-full border transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#131313] focus-visible:ring-offset-2 focus-visible:ring-offset-[#faf4ec] lg:hidden ${
+          isOpen
+            ? 'border-[#131313] bg-[#131313] text-[#f0ece5]'
+            : 'border-[#131313]/10 bg-[#faf4ec] text-[#131313]'
+        }`}
         onClick={onToggle}
         type="button"
-        className="relative z-50 flex h-12 w-12 items-center justify-center rounded-full bg-[#faf4ec] text-black transition-transform duration-300 hover:scale-95 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#faf4ec] focus-visible:ring-offset-2 focus-visible:ring-offset-black lg:hidden"
       >
         <span className="relative h-3 w-6">
           <span
-            className={`absolute left-0 top-0 h-0.5 w-6 rounded-full bg-current transition-transform duration-300 ${
-              isOpen ? 'translate-y-1.5 rotate-45' : ''
+            className={`absolute left-0 top-0 h-[2px] w-6 rounded-full bg-current transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] ${
+              isOpen ? 'top-1/2 -translate-y-1/2 rotate-45' : ''
             }`}
           />
           <span
-            className={`absolute bottom-0 left-0 h-0.5 w-6 rounded-full bg-current transition-transform duration-300 ${
-              isOpen ? '-translate-y-1.5 -rotate-45' : ''
+            className={`absolute bottom-0 left-0 h-[2px] w-6 rounded-full bg-current transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] ${
+              isOpen ? 'bottom-1/2 translate-y-1/2 -rotate-45' : ''
             }`}
           />
         </span>
       </button>
 
       <div
-        className={`fixed inset-0 z-40 bg-black/55 transition-opacity duration-300 lg:hidden ${
+        className={`fixed inset-0 z-40 bg-black/25 transition-opacity duration-500 lg:hidden ${
           isOpen ? 'pointer-events-auto opacity-100' : 'pointer-events-none opacity-0'
         }`}
         onClick={onClose}
       />
 
-      <aside
-        className={`fixed right-0 top-0 z-40 flex h-screen w-full max-w-[24rem] flex-col bg-black px-5 pb-8 pt-5 text-[#faf4ec] transition-transform duration-500 lg:hidden ${
-          isOpen ? 'translate-x-0' : 'translate-x-full'
+      <div
+        className={`fixed right-4 top-4 z-40 h-[calc(100vh-2rem)] w-[min(24rem,calc(100vw-2rem))] transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] lg:hidden ${
+          isOpen ? 'translate-x-0' : 'translate-x-[115%]'
         }`}
       >
-        <div className="flex items-center justify-end">
-          <button
-            aria-label="Close menu"
-            onClick={onClose}
-            type="button"
-            className="flex h-12 w-12 items-center justify-center rounded-full border border-[#faf4ec]/20 bg-[#111111] text-[#faf4ec] transition-transform duration-300 hover:scale-95 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#faf4ec]"
-          >
-            <span className="relative h-5 w-5">
-              <span className="absolute left-1/2 top-1/2 h-0.5 w-5 -translate-x-1/2 -translate-y-1/2 rotate-45 rounded-full bg-current" />
-              <span className="absolute left-1/2 top-1/2 h-0.5 w-5 -translate-x-1/2 -translate-y-1/2 -rotate-45 rounded-full bg-current" />
-            </span>
-          </button>
-        </div>
+        <div className="absolute inset-0 translate-x-0 rounded-[2rem] bg-[#131313]" />
+        <div
+          className={`absolute inset-0 rounded-[2rem] bg-[#ff4c24] transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] ${
+            isOpen ? 'translate-x-0' : 'translate-x-[8%]'
+          }`}
+        />
+        <aside className="absolute inset-0 rounded-[2rem] bg-[#faf4ec] px-5 pb-8 pt-20 text-[#131313] shadow-[0_24px_80px_rgba(19,19,19,0.18)]">
+          <div className="flex h-full flex-col justify-between">
+            <div className="flex flex-col gap-3">
+              {navLinks.map((link) => (
+                <MenuLink key={link.href} {...link} onClick={onClose} />
+              ))}
+            </div>
 
-        <div className="flex flex-1 flex-col justify-between pt-10">
-          <div className="flex flex-col gap-3">
-            {navLinks.map((link) => (
-              <a
-                key={link.href}
-                aria-label={link.ariaLabel}
-                className="block rounded-full px-5 py-3 text-4xl font-semibold leading-none text-[#faf4ec] transition-colors duration-300 hover:bg-[#faf4ec] hover:text-black focus:outline-none focus-visible:ring-2 focus-visible:ring-[#faf4ec]"
-                href={link.href}
-                onClick={onClose}
-              >
-                {link.label}
-              </a>
-            ))}
+            <MobileGetResultsButton onClick={onClose} />
           </div>
-
-          <a
-            className="inline-flex items-center justify-center gap-2 rounded-full bg-[#faf4ec] px-5 py-4 text-base font-semibold text-black transition-transform duration-300 hover:scale-95 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#faf4ec] focus-visible:ring-offset-2 focus-visible:ring-offset-black"
-            href="#contact"
-            onClick={onClose}
-          >
-            <span>Get Results</span>
-            <FireIcon />
-          </a>
-        </div>
-      </aside>
+        </aside>
+      </div>
     </>
   )
 }

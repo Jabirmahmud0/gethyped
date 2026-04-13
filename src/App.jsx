@@ -2,7 +2,7 @@ import Navbar from './components/Navbar/Navbar'
 
 const App = () => {
   return (
-    <main className="min-h-screen bg-black font-[Inter] text-[#faf4ec]">
+    <main className="min-h-screen bg-[#faf4ec] font-[Inter] text-[#131313]">
       <Navbar />
     </main>
   )
