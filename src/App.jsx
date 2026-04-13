@@ -3,6 +3,7 @@ import Hero from './components/Hero/Hero'
 import Results from './components/Results/Results'
 import Expertises from './components/Expertises/Expertises'
 import SelectedWork from './components/SelectedWork/SelectedWork'
+import ClientMarquee from './components/ClientMarquee/ClientMarquee'
 
 const App = () => {
   return (
@@ -12,6 +13,7 @@ const App = () => {
       <Results />
       <Expertises />
       <SelectedWork />
+      <ClientMarquee />
     </main>
   )
 }
