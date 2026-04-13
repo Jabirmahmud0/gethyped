@@ -2,6 +2,7 @@ import Navbar from './components/Navbar/Navbar'
 import Hero from './components/Hero/Hero'
 import Results from './components/Results/Results'
 import Expertises from './components/Expertises/Expertises'
+import SelectedWork from './components/SelectedWork/SelectedWork'
 
 const App = () => {
   return (
@@ -10,6 +11,7 @@ const App = () => {
       <Hero />
       <Results />
       <Expertises />
+      <SelectedWork />
     </main>
   )
 }
