@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function Results() {
   return (
-    <section className="py-24 px-4 md:px-8 max-w-[1400px] mx-auto">
+    <section className="py-24 px-4 md:px-8 max-w-[1400px] mx-auto overflow-x-hidden">
       {/* Top Large Text */}
       <div className="mb-24 max-w-5xl">
         <h2 className="text-4xl sm:text-5xl md:text-xl lg:text-6xl font-bold leading-[1.05] tracking-[-0.02em] text-[#131313]">
@@ -13,7 +13,7 @@ export default function Results() {
       {/* Bottom Section */}
       <div className="flex flex-col md:flex-row items-end justify-between gap-12 md:gap-8">
         {/* Left: Image */}
-        <div className="w-full md:w-auto">
+        <div className="w-full md:w-auto flex justify-center md:justify-start">
           <div className="rounded-3xl overflow-hidden aspect-[4/5] w-full max-w-[320px]">
             <video muted loop playsInline autoPlay className="w-full h-full object-cover md:hidden">
               <source src="https://gethyped.b-cdn.net/New%20Reach/new-reach-loop.mp4" type="video/mp4" />

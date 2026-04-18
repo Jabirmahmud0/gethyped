@@ -102,7 +102,7 @@ export default function MouseTrail() {
   return (
     <section
       ref={sectionRef}
-      className="relative w-full bg-[#FAF4EC] overflow-hidden flex flex-col items-center justify-center pt-58 pb-32 gap-8"
+      className="relative w-full bg-[#FAF4EC] overflow-hidden hidden md:flex flex-col items-center justify-center pt-58 pb-32 gap-8"
       style={{ minHeight: '50vh' }}
     >
       {/* Hidden logo pool — not visible */}

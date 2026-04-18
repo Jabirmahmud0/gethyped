@@ -62,7 +62,7 @@ export default function Hero() {
   };
 
   return (
-    <section className="section_hero">
+    <section className="section_hero overflow-x-hidden">
       <div className="padding-global">
         <div className="container-col-12">
           <div className="hero">

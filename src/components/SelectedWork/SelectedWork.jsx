@@ -55,7 +55,7 @@ function WorkCard({ work }) {
   return (
     <a
       href={work.link}
-      className="group block relative w-full aspect-[3/4.5] md:aspect-[3/4] rounded-4xl overflow-hidden transition-all duration-200 will-change-transform hover:-translate-y-3 hover:-rotate-[2.5deg] hover:scale-[1.03] shadow-md border-[8px]"
+      className="group block relative w-full max-w-full aspect-[3/4.5] md:aspect-[3/4] rounded-4xl overflow-hidden transition-all duration-200 will-change-transform shadow-md border-[8px] md:hover:-translate-y-3 md:hover:-rotate-[2.5deg] md:hover:scale-[1.03]"
       style={{ borderColor: work.colorCode }}
     >
       {/* Background Image / Video Container */}
@@ -77,7 +77,7 @@ function WorkCard({ work }) {
 
       {/* Bottom info bar - Floating with gaps and rounded top-left curved shape using SVG inline */}
       <div 
-        className="absolute bottom-3 left-3 right-3 text-white overflow-hidden rounded-b-xl"
+        className="absolute bottom-3 left-3 right-3 max-w-[calc(100%-1.5rem)] text-white overflow-hidden rounded-b-xl"
         style={{ color: work.innerColor || work.colorCode }}
       >
         {/* Background rounded slanted polygon from original design */}
@@ -93,20 +93,20 @@ function WorkCard({ work }) {
           <path d="M428.625 35.0943V136.589C428.625 152.326 428.625 167.249 428.625 173.088L1.03513e-06 173.082C-1.56688e-05 170.148 0.000175319 166.808 0.000175319 159.068V77.9695C0.000175319 70.9826 5.03458 65.0132 11.904 63.8674L388.605 1.00885C409.565 -2.47661 428.625 13.7568 428.625 35.0862" fill="currentColor"></path>
         </svg>
 
-        <div className="relative pt-[76px] pb-6 px-6 sm:px-8 z-10 flex flex-col items-start min-h-[140px]">
-          <div className="absolute top-[32px] right-5 sm:right-6 bg-white rounded-full w-10 h-10 flex items-center justify-center text-black shadow-sm overflow-hidden group-hover:scale-110 transition-transform duration-200 ease-out">
+        <div className="relative z-10 flex min-w-0 flex-col items-start pt-[76px] pb-6 px-5 sm:px-8 min-h-[140px]">
+          <div className="absolute top-[32px] right-4 sm:right-6 bg-white rounded-full w-10 h-10 flex items-center justify-center text-black shadow-sm overflow-hidden transition-transform duration-200 ease-out md:group-hover:scale-110">
             <div className="relative w-full h-full flex items-center justify-center">
               {/* First arrow - slides out top right */}
-              <div className="absolute transition-transform duration-200 ease-out group-hover:translate-x-[150%] group-hover:-translate-y-[150%]">
+              <div className="absolute transition-transform duration-200 ease-out md:group-hover:translate-x-[150%] md:group-hover:-translate-y-[150%]">
                 <ArrowUpRight />
               </div>
               {/* Second arrow - slides in from bottom left */}
-              <div className="absolute transition-transform duration-200 ease-out -translate-x-[150%] translate-y-[150%] group-hover:translate-x-0 group-hover:translate-y-0">
+              <div className="absolute transition-transform duration-200 ease-out -translate-x-[150%] translate-y-[150%] md:group-hover:translate-x-0 md:group-hover:translate-y-0">
                 <ArrowUpRight />
               </div>
             </div>
           </div>
-          <h3 className="text-white font-[800] text-[20px] sm:text-[22px] leading-[1.2] mb-4 pr-10 relative drop-shadow-sm">
+          <h3 className="relative mb-4 max-w-full pr-10 text-white font-[800] text-[20px] sm:text-[22px] leading-[1.2] drop-shadow-sm break-words">
             {work.title}
           </h3>
           <span className="inline-block bg-white/20 text-white text-[12px] font-bold px-4 py-1.5 rounded-full relative">
@@ -120,15 +120,15 @@ function WorkCard({ work }) {
 
 export default function SelectedWork() {
   return (
-    <section className="bg-[#FAF4EC] py-16 md:py-24 px-6 md:px-12 overflow-hidden">
-      <div className="max-w-[1500px] mx-auto">
+    <section className="bg-[#FAF4EC] py-16 md:py-24 px-4 sm:px-6 md:px-12 overflow-x-clip">
+      <div className="max-w-[1500px] mx-auto min-w-0 overflow-x-clip">
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 lg:gap-16 xl:gap-20 items-end">
+        <div className="grid min-w-0 grid-cols-1 md:grid-cols-3 gap-10 lg:gap-16 xl:gap-20 items-end">
           
           {/* Col 1 */}
-          <div className="flex flex-col justify-between h-full">
+          <div className="flex min-w-0 flex-col justify-between h-full">
             <div className="mb-12 mt-4 md:mt-0 md:pt-10">
-              <h2 className="text-[3.5rem] md:text-[4.5rem] lg:text-[5rem] font-[800] leading-[1.05] mb-6 text-[#1A1A1A] tracking-tight">
+              <h2 className="text-[clamp(2.9rem,14vw,3.5rem)] md:text-[4.5rem] lg:text-[5rem] font-[800] leading-[1.05] mb-6 text-[#1A1A1A] tracking-tight max-w-full break-words">
                 Content<br />dat scoort.
               </h2>
               <p className="text-[1.1rem] text-gray-700 font-medium leading-relaxed mb-10 max-w-[320px]">
@@ -137,9 +137,9 @@ export default function SelectedWork() {
               
               <a
                 href="/work"
-                className="inline-flex items-center gap-4 border-[2px] border-[#1A1A1A] pl-6 pr-2 py-2 rounded-lg font-[700] text-sm hover:bg-[#1A1A1A] hover:text-white transition-all duration-[450ms] ease-[cubic-bezier(0.34,2.27,0.64,1)] group hover:-skew-y-[4deg] hover:-rotate-[1deg] hover:scale-[1.02]"
+                className="inline-flex max-w-full items-center gap-3 border-[2px] border-[#1A1A1A] pl-5 pr-2 py-2 rounded-lg font-[700] text-sm hover:bg-[#1A1A1A] hover:text-white transition-all duration-[450ms] ease-[cubic-bezier(0.34,2.27,0.64,1)] group md:hover:-skew-y-[4deg] md:hover:-rotate-[1deg] md:hover:scale-[1.02]"
               >
-                Bekijk al ons werk
+                <span className="break-words">Bekijk al ons werk</span>
                 <span className="bg-[#1A1A1A] text-white rounded-lg w-8 h-8 flex items-center justify-center group-hover:bg-white group-hover:text-[#1A1A1A] transition-colors">
                   <ArrowRight />
                 </span>
@@ -150,12 +150,12 @@ export default function SelectedWork() {
           </div>
 
           {/* Col 2 */}
-          <div className="flex flex-col justify-end h-full md:pb-24 lg:pb-32">
+          <div className="flex min-w-0 flex-col justify-end h-full md:pb-24 lg:pb-32">
             <WorkCard work={works[1]} />
           </div>
 
           {/* Col 3 */}
-          <div className="flex flex-col justify-end h-full md:pb-48 lg:pb-64">
+          <div className="flex min-w-0 flex-col justify-end h-full md:pb-48 lg:pb-64">
             <WorkCard work={works[2]} />
           </div>
 

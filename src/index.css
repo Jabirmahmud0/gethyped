@@ -10,6 +10,20 @@
   --color-bg-dark: #131313;
 }
 
+html,
+body,
+#root {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: clip;
+}
+
+main,
+section,
+footer {
+  max-width: 100%;
+}
+
 body {
   background-color: var(--color-bg-light);
   color: var(--color-bg-dark);
@@ -19,6 +33,12 @@ body {
 
 a {
   text-decoration: none;
+}
+
+img,
+video,
+svg {
+  max-width: 100%;
 }
 
 /* ===== Mobile Hamburger Menu ===== */
@@ -75,7 +95,7 @@ a {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100vw;
+  width: 100%;
   height: 100dvh;
   z-index: 999;
   background-color: var(--color-brand-pink);
@@ -326,15 +346,18 @@ a {
   margin-left: auto;
   margin-right: auto;
   width: 100%;
+  min-width: 0;
 }
 
 .hero {
   display: flex;
   flex-direction: column;
+  min-width: 0;
 }
 
 .hero-title {
   margin-bottom: 4em;
+  min-width: 0;
 }
 
 .heading-xxl {
@@ -343,10 +366,12 @@ a {
   line-height: 1;
   letter-spacing: -0.06em;
   color: var(--color-bg-dark);
+  overflow-wrap: anywhere;
 }
 
 .max-width-60ch {
   max-width: 60ch;
+  min-width: 0;
 }
 
 .paragraph-l {
@@ -359,6 +384,7 @@ a {
 /* Cards container */
 .mwg_effect025 {
   overflow: hidden;
+  width: 100%;
 }
 
 .container.is-mwg_effect025 {
@@ -366,6 +392,7 @@ a {
   align-items: center;
   justify-content: center;
   padding: 2em 0;
+  min-width: 0;
 }
 
 /* Results Card Base */
@@ -490,7 +517,8 @@ a {
     display: none !important;
   }
   .results-card {
-    width: 60vw;
+    width: min(46vw, 11.5rem);
+    min-width: 0;
   }
   .section_hero {
     padding-top: 7rem;
@@ -501,6 +529,16 @@ a {
   .padding-global {
     padding-left: 1.25em;
     padding-right: 1.25em;
+  }
+  .container.is-mwg_effect025 {
+    justify-content: flex-start;
+    padding: 1.25em 0 0;
+  }
+  .results-card_content {
+    padding: 1rem;
+  }
+  .results-card_title {
+    font-size: clamp(2rem, 12vw, 3rem);
   }
 }
 

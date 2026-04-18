@@ -59,11 +59,11 @@ const FooterNavLink = ({ href, label, ariaLabel }) => (
     </span>
     {/* Text swap layers */}
     <span className="relative z-10 flex items-center">
-      <span className="px-4 py-2.5 text-[0.875rem] font-bold text-[#131313] transition-all duration-[750ms] ease-[cubic-bezier(0.34,2.27,0.64,1)] group-hover:-translate-y-8 group-hover:rotate-[-60deg] group-hover:opacity-0 [transform-origin:top_right]">
+      <span className="px-3 py-1.5 xl:px-4 xl:py-2.5 text-[0.8rem] xl:text-[0.875rem] font-bold text-[#131313] transition-all duration-[750ms] ease-[cubic-bezier(0.34,2.27,0.64,1)] group-hover:-translate-y-8 group-hover:rotate-[-60deg] group-hover:opacity-0 [transform-origin:top_right]">
         {label}
       </span>
       <span className="absolute inset-0 flex items-center justify-center translate-y-8 rotate-[-30deg] opacity-0 transition-all duration-[750ms] ease-[cubic-bezier(0.34,2.27,0.64,1)] group-hover:translate-y-0 group-hover:rotate-0 group-hover:opacity-100 [transform-origin:top_right]">
-        <span className="px-4 py-2.5 text-[0.875rem] font-bold text-[#f0ece5]">{label}</span>
+        <span className="px-3 py-1.5 xl:px-4 xl:py-2.5 text-[0.8rem] xl:text-[0.875rem] font-bold text-[#f0ece5]">{label}</span>
       </span>
     </span>
   </a>
@@ -107,7 +107,7 @@ function FooterLogo() {
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 941 382"
       fill="none"
-      className="w-[220px] md:w-[320px] lg:w-[450px]"
+      className="w-[160px] md:w-[240px] lg:w-[330px]"
     >
       <path d="M940.689 83.6343V312.664C940.689 350.749 909.95 381.62 872.028 381.62H34.4602C15.8081 381.62 0.689453 366.436 0.689453 347.704V170.798C0.689453 153.889 12.8733 139.442 29.4979 136.669L843.838 1.14395C894.561 -7.29124 940.689 31.9954 940.689 83.6149" fill="#EAE4D8" />
       <path d="M855.114 363.741H253.594V117.356L844.9 24.2971C884.869 18.0143 921.014 49.0403 921.014 89.6843V297.558C921.014 334.111 891.511 363.741 855.114 363.741Z" fill="black" />
@@ -144,10 +144,10 @@ function FooterBgShape() {
 
 export default function Footer() {
   return (
-    <footer className="bg-[#FAF4EC] relative w-full">
+    <footer className="bg-[#FAF4EC] relative w-full overflow-x-clip">
       {/* Outer wrapper to provide gaps on both sides identical to body constraints */}
-      <div className="padding-global">
-        <div className="container-col-12 relative w-full">
+      <div className="padding-global max-w-full overflow-x-clip">
+        <div className="container-col-12 relative w-full max-w-full overflow-x-clip">
 
           {/* The diagonal beige background, constrained by the container */}
           <div className="absolute inset-0 z-0">
@@ -155,27 +155,27 @@ export default function Footer() {
           </div>
 
           {/* ---- ALL FOOTER CONTENT sits on top of the bg shape ---- */}
-          <div className="relative z-10 pr-6 md:pr-10 lg:pr-16 pt-16 md:pt-24 pb-8">
+          <div className="relative z-10 max-w-full overflow-x-clip pr-6 md:pr-10 lg:pr-16 pt-6 md:pt-16 pb-6 md:pb-8">
 
         {/* Flex container for the layout */}
         {/* Flex container for the layout - fully centered on mobile, split on desktop */}
-        <div className="flex flex-col items-center xl:flex-row justify-between xl:items-end gap-8 lg:gap-16 text-center xl:text-left">
+        <div className="flex max-w-full min-w-0 flex-col items-center justify-between gap-8 text-center xl:flex-row xl:items-end xl:text-left lg:gap-16">
 
           {/* LEFT SIDE/TOP: Logo */}
-          <div className="flex-shrink-0 order-1 xl:order-1 xl:self-end" style={{ transform: 'translateY(8px)' }}>
-            <div className="mb-8 xl:mb-0 transform xl:translate-y-8">
+          <div className="order-1 max-w-full flex-shrink-0 xl:order-1 xl:self-end">
+            <div className="mb-2 xl:mb-0 translate-y-10 xl:translate-y-10">
               <FooterLogo />
             </div>
           </div>
 
           {/* CENTER/MOBILE ONLY: CTA Button Group */}
-          <div className="order-2 xl:hidden mb-10 w-full max-w-[320px]">
+          <div className="order-2 mt-4 mb-4 w-full max-w-[300px] px-1 sm:max-w-[350px] xl:hidden">
             <a
               href="/contact"
-              className="flex items-center justify-between bg-[#FF4C24] text-white font-bold py-3 px-6 rounded-2xl w-full group hover:scale-[1.02] transition-transform"
+              className="flex items-center justify-between gap-2 bg-[#FF4C24] text-white font-bold py-2.5 px-3 rounded-2xl w-full group hover:scale-[1.02] transition-transform sm:gap-3 sm:py-3 sm:px-4"
             >
-              <span className="text-[1.1rem]">Get Hyped! Neem contact op</span>
-              <div className="bg-white p-2 rounded-xl flex items-center justify-center ml-2">
+              <span className="whitespace-nowrap text-[0.78rem] leading-none sm:text-[0.95rem]">Get Hyped! Neem contact op</span>
+              <div className="bg-white p-2.5 rounded-xl flex items-center justify-center shrink-0 sm:p-3">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="#FF4C24">
                   <path d="M17.55 11.2C17.15 10.74 16.7 10.35 16.27 9.95C15.15 8.94 13.88 8.16 12.82 7.1C10.34 4.67 9.8 0.67 11.37 -2.4C9.79 -2.01 8.42 -1.15 7.24 -0.21C2.93 3.26 1.25 9.36 3.27 14.6C3.34 14.77 3.4 14.93 3.4 15.15C3.4 15.52 3.15 15.85 2.82 15.98C2.44 16.15 2.05 16.05 1.73 15.78C1.64 15.7 1.56 15.61 1.5 15.5C-0.38 13.12 -0.68 9.71 0.58 6.98C-2.19 9.25 -3.7 13.08 -3.49 16.7C-3.39 17.53 -3.29 18.36 -3.01 19.2C-2.78 20.2 -2.33 21.2 -1.83 22.08C-0.03 24.96 3.08 27.03 6.43 27.45C9.99 27.9 13.8 27.25 16.54 24.78C19.59 22.02 20.65 17.58 19.09 13.78L18.87 13.35C18.52 12.58 17.55 11.2 17.55 11.2ZM12.29 21.75C11.83 22.15 11.06 22.58 10.46 22.75C8.6 23.42 6.73 22.48 5.63 21.38C7.61 20.91 8.79 19.43 9.14 17.95C9.42 16.62 8.89 15.52 8.67 14.23C8.47 13 8.5 11.95 8.95 10.8C9.26 11.43 9.6 12.06 10 12.56C11.28 14.23 13.3 14.96 13.73 17.23C13.8 17.46 13.83 17.7 13.83 17.95C13.83 19.32 13.23 20.82 12.29 21.75Z" />
                 </svg>
@@ -184,7 +184,7 @@ export default function Footer() {
           </div>
 
           {/* RIGHT SIDE: Two columns + Sticker */}
-          <div className="flex flex-col sm:flex-row items-center xl:items-end xl:justify-end gap-10 sm:gap-16 lg:gap-24 relative order-3 xl:order-2" style={{ transform: 'translateY(16px)' }}>
+          <div className="relative order-3 flex max-w-full min-w-0 flex-col items-center gap-10 sm:flex-row sm:gap-16 xl:order-2 xl:items-end xl:justify-end lg:gap-24" style={{ transform: 'translateY(16px)' }}>
 
             {/* Sticker positioned top right relative to this right container - hidden on small mobile to match image */}
             <div className="hidden md:block absolute -top-32 right-0 sm:-right-8 md:-top-40 md:-right-8">
@@ -192,21 +192,21 @@ export default function Footer() {
             </div>
 
             {/* Column 1: Links & Follow us & Copyright */}
-            <div className="flex flex-col items-center xl:items-start relative z-10 justify-start">
+            <div className="relative z-10 flex min-w-0 max-w-full flex-col items-center justify-start xl:items-start">
               
               {/* Top part: Navigation and Socials */}
-              <div className="flex flex-col items-center xl:items-start gap-6">
+              <div className="flex flex-col items-center xl:items-start gap-3 xl:gap-2">
                 {/* Nav pills */}
-                <div className="flex flex-wrap justify-center xl:justify-start items-center gap-2 max-w-[280px] xl:max-w-none">
+                <div className="flex max-w-full flex-wrap items-center justify-center gap-1 xl:justify-start xl:gap-2">
                   {navLinks.map((link) => (
                     <FooterNavLink key={link.href} {...link} />
                   ))}
                 </div>
 
                 {/* Follow us + social icons */}
-                <div className="flex flex-col xl:flex-row items-center gap-4">
-                  <span className="text-sm font-bold text-black xl:hidden hidden">Follow us</span>
-                  <div className="flex items-center gap-2">
+                <div className="flex max-w-full flex-wrap items-center justify-center gap-3 xl:gap-4">
+                  <span className="text-sm font-bold text-black">Follow us</span>
+                  <div className="flex max-w-full flex-wrap items-center justify-center gap-2">
                     {socialLinks.map((s) => (
                       <a
                         key={s.label}
@@ -214,7 +214,7 @@ export default function Footer() {
                         target="_blank"
                         rel="noopener noreferrer"
                         aria-label={s.label}
-                        className="w-11 h-11 xl:w-9 xl:h-9 rounded-full bg-white hover:bg-black hover:text-white transition-colors flex items-center justify-center text-black shadow-sm"
+                        className="w-12 h-12 xl:w-9 xl:h-9 rounded-full bg-white hover:bg-black hover:text-white transition-colors flex items-center justify-center text-black shadow-sm"
                       >
                         {s.icon}
                       </a>
@@ -223,8 +223,8 @@ export default function Footer() {
                 </div>
               </div>
 
-              {/* Bottom part: Copyright (below Follow us) */}
-              <div className="flex flex-col items-center xl:items-start gap-2 text-xs text-black/50 font-medium mt-10 xl:mt-22">
+              {/* Bottom part: Copyright (below Follow us on desktop) */}
+              <div className="hidden xl:flex xl:flex-row xl:items-start xl:gap-3 text-xs text-black/50 font-medium xl:mt-16 relative xl:-top-4">
                 <span>© 2025 Get Hyped</span>
                 <a
                   href="https://dylanbrouwer.design/"
@@ -238,10 +238,10 @@ export default function Footer() {
             </div>
 
             {/* Column 2: Contact, Adres stacked & Privacy */}
-            <div className="flex flex-col items-center xl:items-start relative z-10 justify-start">
+            <div className="relative z-10 flex min-w-0 max-w-full flex-col items-center justify-start xl:items-start">
               
               {/* Top part: Contact and Adres */}
-              <div className="flex flex-col items-center xl:items-start gap-6 text-sm">
+              <div className="flex flex-col items-center xl:items-start gap-2 text-sm">
                 {/* Contact */}
                 <div className="flex flex-col items-center xl:items-start gap-1">
                   <p className="font-bold text-black mb-1 hidden xl:block">Contact</p>
@@ -262,9 +262,21 @@ export default function Footer() {
               </div>
 
               {/* Bottom part: Privacyvoorwaarden (below Adres) */}
-              <div className="mt-8 xl:mt-8">
+              <div className="mt-10 xl:mt-8 relative xl:-top-4">
                 <a href="/privacyvoorwaarden" className="text-xs text-black/50 font-medium hover:text-black transition-colors">
                   Privacyvoorwaarden
+                </a>
+              </div>
+
+              <div className="mt-4 flex flex-col items-center gap-1 text-xs text-black/50 font-medium xl:hidden">
+                <span>&copy; 2025 Get Hyped</span>
+                <a
+                  href="https://dylanbrouwer.design/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-black transition-colors"
+                >
+                  &copy; Design by Dylan
                 </a>
               </div>
             </div>

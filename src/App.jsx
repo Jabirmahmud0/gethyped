@@ -9,7 +9,7 @@ import Footer from './components/Footer/Footer'
 
 const App = () => {
   return (
-    <main className="min-h-screen bg-[#faf4ec] font-[Inter] text-[#131313]">
+    <main className="min-h-screen w-full max-w-full overflow-x-clip bg-[#faf4ec] font-[Inter] text-[#131313]">
       <Navbar />
       <Hero />
       <Results />

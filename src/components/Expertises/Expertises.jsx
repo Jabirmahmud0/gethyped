@@ -77,48 +77,48 @@ function ExpertiseCard({ item, index }) {
       className="sticky top-0 h-screen w-full overflow-hidden px-4 sm:px-6 lg:px-10 py-4"
       style={{ zIndex: index + 1 }}
     >
-      <div className={`w-full h-full ${item.bg} ${item.textColor} rounded-[2rem] px-6 md:px-12 py-10 flex flex-col justify-between overflow-hidden`}>
+      <div className={`w-full h-full ${item.bg} ${item.textColor} rounded-[2rem] px-5 sm:px-6 md:px-12 py-8 md:py-10 flex flex-col justify-between overflow-hidden`}>
 
         {/* TOP ROW — label + title + number */}
-        <div className="flex items-start justify-between">
-          <div className="flex flex-col gap-5">
+        <div className="flex flex-col gap-6 md:flex-row md:items-start md:justify-between">
+          <div className="flex max-w-full flex-col gap-5">
             {/* Label badge */}
             <span className={`inline-block ${item.labelBg} text-black text-base font-semibold px-5 py-2 rounded-lg w-fit`}>
               {item.label}
             </span>
             {/* Big title */}
-            <h2 className="text-6xl md:text-8xl lg:text-9xl font-extrabold leading-none tracking-tight">
+            <h2 className="max-w-full break-words text-4xl sm:text-5xl md:text-8xl lg:text-9xl font-extrabold leading-none tracking-tight">
               {item.title}
             </h2>
           </div>
 
           {/* Big faded number — top right */}
-          <div className={`text-8xl md:text-[12rem] font-extrabold ${item.numberColor} leading-none select-none`}>
+          <div className={`self-end md:self-auto text-6xl sm:text-7xl md:text-[12rem] font-extrabold ${item.numberColor} leading-none select-none`}>
             {item.number}
           </div>
         </div>
 
         {/* BOTTOM ROW — left text + right video */}
-        <div className="flex flex-col md:flex-row items-end justify-between gap-8">
+        <div className="flex flex-col md:flex-row items-start md:items-end justify-between gap-8">
 
           {/* Bottom left — subtitle + desc + button */}
           <div className="w-full md:w-1/2 flex flex-col gap-5">
-            <h3 className="text-2xl md:text-3xl font-bold">
+            <h3 className="max-w-full break-words text-2xl md:text-3xl font-bold">
               {item.subtitle}
             </h3>
-            <p className="text-lg md:text-xl opacity-80 leading-relaxed max-w-md">
+            <p className="max-w-md text-base sm:text-lg md:text-xl opacity-80 leading-relaxed">
               {item.description}
             </p>
 
             <a
               href={item.link}
-              className={`inline-flex items-center gap-3 text-lg font-bold px-7 py-3.5 rounded-xl w-fit hover:opacity-80 transition-opacity ${
+              className={`inline-flex max-w-full items-center gap-3 text-base sm:text-lg font-bold px-5 sm:px-7 py-3.5 rounded-xl w-fit hover:opacity-80 transition-opacity ${
                 item.id === 1
                   ? 'bg-[#FF4C24] text-white'
                   : 'bg-white text-black'
               }`}
             >
-              {item.buttonText}
+              <span className="break-words leading-tight">{item.buttonText}</span>
               <span className={`flex items-center justify-center rounded-lg p-2 border ${
                 item.id === 1
                   ? 'bg-white text-[#FF4C24] border-white'
@@ -151,7 +151,7 @@ function ExpertiseCard({ item, index }) {
 
 export default function Expertises() {
   return (
-    <section id="expertises" className="relative w-full">
+    <section id="expertises" className="relative w-full overflow-x-hidden">
       {expertises.map((item, i) => (
         <ExpertiseCard
           key={item.id}

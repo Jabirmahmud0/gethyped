@@ -119,11 +119,11 @@ const Navbar = () => {
 
   return (
     <nav className={`fixed left-0 top-0 z-40 box-border w-full px-4 py-4 font-[Inter] sm:px-6 lg:px-10 transition-transform duration-500 ease-in-out ${isVisible ? 'translate-y-0' : '-translate-y-full'}`}>
-      <div className="mx-auto flex max-w-[1920px] items-center justify-between gap-4">
+      <div className="mx-auto flex min-w-0 max-w-[1920px] items-center justify-between gap-3 sm:gap-4">
         <a
           aria-current="page"
           aria-label="Home link"
-          className="relative z-50 block h-[3.75rem] w-[9.25rem] shrink-0 no-underline transition-transform duration-300 hover:scale-95 sm:h-[4.5rem] sm:w-[11rem] lg:h-[5.25rem] lg:w-[13rem]"
+          className="relative z-50 block h-[3.15rem] w-[7.75rem] shrink-0 no-underline transition-transform duration-300 hover:scale-95 sm:h-[4.5rem] sm:w-[11rem] lg:h-[5.25rem] lg:w-[13rem]"
           href="/"
           onClick={closeMenu}
         >
@@ -137,7 +137,7 @@ const Navbar = () => {
           ))}
         </div>
 
-        <div className="relative z-50 flex items-center gap-3">
+        <div className="relative z-50 flex shrink-0 items-center gap-2 sm:gap-3">
           <DesktopGetResultsButton />
           <HamburgerMenu
             isOpen={isMenuOpen}
