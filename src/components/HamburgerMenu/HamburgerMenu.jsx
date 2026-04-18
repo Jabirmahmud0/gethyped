@@ -34,7 +34,7 @@ const SmallLogo = () => (
 const MenuLink = ({ href, label, ariaLabel, onClick }) => (
   <a
     aria-label={ariaLabel}
-    className="rounded-full bg-white px-5 py-2.5 text-[0.95rem] font-bold text-[#131313] transition-all duration-300 hover:bg-[#131313] hover:text-[#f0ece5] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#131313]"
+    className="rounded-xl bg-white px-5 py-2.5 text-[0.95rem] font-bold text-[#131313] no-underline transition-all duration-300 hover:bg-[#131313] hover:text-[#f0ece5] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#131313]"
     href={href}
     onClick={onClick}
   >
@@ -44,7 +44,7 @@ const MenuLink = ({ href, label, ariaLabel, onClick }) => (
 
 const MobileGetResultsButton = ({ onClick }) => (
   <a
-    className="inline-flex items-center gap-2 rounded-xl bg-[#131313] px-5 py-3 text-[0.9rem] font-bold text-[#f0ece5] transition-all duration-300 hover:bg-[#333] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#faf4ec] focus-visible:ring-offset-2 focus-visible:ring-offset-[#ffb8eb]"
+    className="inline-flex items-center gap-2 rounded-xl bg-[#131313] px-5 py-3 text-[0.9rem] font-bold text-[#f0ece5] no-underline transition-all duration-300 hover:bg-[#333] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#faf4ec] focus-visible:ring-offset-2 focus-visible:ring-offset-[#ffb8eb]"
     href="#contact"
     onClick={onClick}
   >
@@ -102,7 +102,7 @@ const HamburgerMenu = ({ isOpen, onToggle, onClose }) => {
         {/* Section 1: Top bar (logo + close) */}
         <div className="flex-none px-6 pt-6">
           <div className="flex items-center justify-between">
-            <a href="/" onClick={onClose}>
+            <a href="/" className="no-underline" onClick={onClose}>
               <SmallLogo />
             </a>
             <button

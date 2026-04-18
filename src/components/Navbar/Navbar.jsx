@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react'
 import { navLinks } from '../../data/data'
 import { useMenuOpen } from '../../hooks/useMenuOpen'
 import HamburgerMenu from '../HamburgerMenu/HamburgerMenu'
@@ -37,16 +38,16 @@ const FireIcon = () => (
 const NavLink = ({ href, label, ariaLabel, onClick }) => (
   <a
     aria-label={ariaLabel}
-    className="group relative inline-flex items-center justify-center overflow-hidden rounded-full focus:outline-none focus-visible:ring-2 focus-visible:ring-[#131313] focus-visible:ring-offset-2 focus-visible:ring-offset-[#faf4ec]"
+    className="group relative inline-flex items-center justify-center overflow-hidden rounded-xl no-underline focus:outline-none focus-visible:ring-2 focus-visible:ring-[#131313] focus-visible:ring-offset-2 focus-visible:ring-offset-[#faf4ec]"
     href={href}
     onClick={onClick}
   >
     {/* Background swoosh layers */}
-    <span className="absolute inset-0 transition-transform duration-[600ms] ease-[cubic-bezier(0.32,0.72,0,1)] translate-y-full group-hover:translate-y-0">
+    <span className="absolute inset-0 transition-transform duration-[600ms] ease-[cubic-bezier(0.32,0.72,0,1)] translate-y-[101%] group-hover:translate-y-0">
       <span className="absolute inset-0 bg-[#ff4c24]" />
     </span>
     <span
-      className="absolute inset-0 transition-transform duration-[600ms] ease-[cubic-bezier(0.32,0.72,0,1)] translate-y-full group-hover:translate-y-0"
+      className="absolute inset-0 transition-transform duration-[600ms] ease-[cubic-bezier(0.32,0.72,0,1)] translate-y-[101%] group-hover:translate-y-0"
       style={{ transitionDelay: '64ms' }}
     >
       <span className="absolute inset-0 bg-[#131313]" />
@@ -67,11 +68,11 @@ const NavLink = ({ href, label, ariaLabel, onClick }) => (
 const DesktopGetResultsButton = () => (
   <div className="hidden lg:block">
     <a
-      className="group inline-block overflow-hidden rounded-[0.75rem] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#131313] focus-visible:ring-offset-2 focus-visible:ring-offset-[#faf4ec]"
+      className="group inline-block overflow-hidden rounded-[0.75rem] no-underline focus:outline-none focus-visible:ring-2 focus-visible:ring-[#131313] focus-visible:ring-offset-2 focus-visible:ring-offset-[#faf4ec] transition-transform duration-[450ms] ease-[cubic-bezier(0.34,2.27,0.64,1)] hover:-skew-y-[4deg] hover:-rotate-[1deg] hover:scale-[1.02] active:scale-95"
       href="#contact"
     >
       {/* button-default__inner */}
-      <span className="relative block transition-transform duration-[450ms] ease-[cubic-bezier(0.34,2.27,0.64,1)] group-hover:-skew-y-[4deg] group-hover:-rotate-[1deg] group-hover:scale-[1.02] group-active:scale-95">
+      <span className="relative block">
         {/* button-default__background */}
         <span className="absolute inset-0 rounded-[0.75rem] bg-[#ffb8eb] transition-all duration-[450ms] ease-[cubic-bezier(0.34,2.27,0.64,1)] group-hover:w-[calc(100%-0.5rem)] group-hover:rounded-[0.5rem]" />
         {/* button-default__text + icon */}
@@ -88,14 +89,41 @@ const DesktopGetResultsButton = () => (
 
 const Navbar = () => {
   const { isMenuOpen, toggleMenu, closeMenu } = useMenuOpen()
+  const [isVisible, setIsVisible] = useState(true)
+  const [lastScrollY, setLastScrollY] = useState(0)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY
+
+      // Always show if menu is open or at the very top
+      if (isMenuOpen || currentScrollY < 10) {
+        setIsVisible(true)
+        setLastScrollY(currentScrollY)
+        return
+      }
+
+      // Scrolling down: hide. Scrolling up: show.
+      if (currentScrollY > lastScrollY && currentScrollY > 100) {
+        setIsVisible(false)
+      } else {
+        setIsVisible(true)
+      }
+      
+      setLastScrollY(currentScrollY)
+    }
+
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [lastScrollY, isMenuOpen])
 
   return (
-    <nav className="fixed left-0 top-0 z-40 w-full px-4 py-4 font-[Inter] sm:px-6 lg:px-10">
+    <nav className={`fixed left-0 top-0 z-40 w-full px-4 py-4 font-[Inter] sm:px-6 lg:px-10 transition-transform duration-500 ease-in-out ${isVisible ? 'translate-y-0' : '-translate-y-full'}`}>
       <div className="mx-auto flex max-w-[1920px] items-center justify-between gap-4">
         <a
           aria-current="page"
           aria-label="Home link"
-          className="relative z-50 block h-[3.75rem] w-[9.25rem] shrink-0 transition-transform duration-300 hover:scale-95 sm:h-[4.5rem] sm:w-[11rem] lg:h-[5.25rem] lg:w-[13rem]"
+          className="relative z-50 block h-[3.75rem] w-[9.25rem] shrink-0 no-underline transition-transform duration-300 hover:scale-95 sm:h-[4.5rem] sm:w-[11rem] lg:h-[5.25rem] lg:w-[13rem]"
           href="/"
           onClick={closeMenu}
         >
@@ -103,7 +131,7 @@ const Navbar = () => {
         </a>
 
         {/* Desktop nav links pill */}
-        <div className="hidden items-center gap-1 rounded-full bg-white p-1 lg:flex">
+        <div className="hidden items-center gap-1 rounded-2xl bg-white p-1 lg:flex">
           {navLinks.map((link) => (
             <NavLink key={link.href} {...link} />
           ))}

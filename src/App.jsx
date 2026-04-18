@@ -5,6 +5,7 @@ import Expertises from './components/Expertises/Expertises'
 import SelectedWork from './components/SelectedWork/SelectedWork'
 import ClientMarquee from './components/ClientMarquee/ClientMarquee'
 import MouseTrail from './components/MouseTrail/MouseTrail'
+import Footer from './components/Footer/Footer'
 
 const App = () => {
   return (
@@ -16,6 +17,7 @@ const App = () => {
       <SelectedWork />
       <ClientMarquee />
       <MouseTrail />
+      <Footer />
     </main>
   )
 }
