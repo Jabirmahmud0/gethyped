@@ -28,18 +28,28 @@ export default function Results() {
             We stoppen niet bij mooie plaatjes en vette beelden. We maken het meetbaar. Zo weet je precies wat werkt en wat niet. Nooit meer content zonder strategie. Nooit meer content zonder resultaat.
           </p>
           
-          <a href="/about" className="inline-flex items-center justify-between border border-black/20 bg-transparent pl-5 pr-1.5 py-1.5 rounded-full font-medium hover:scale-105 transition-transform">
-            <span className="mr-4 text-sm">Leer ons kennen</span>
-            <div className="bg-[#131313] text-white rounded-full p-2 flex items-center justify-center">
-              <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          <a href="/about" className="button-default">
+            <div className="button-default__inner px-0 py-0">
+              <div className="button-default__background border border-black/20 bg-transparent"></div>
+              <div className="flex items-center justify-between pl-5 pr-1.5 py-1 w-full">
+                <span className="button-default__text !mr-4 text-sm text-[#131313]">Leer ons kennen</span>
+                <div className="button-default__icon !ml-0 bg-[#131313] text-white rounded-full p-2 flex items-center justify-center">
+                  <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </div>
+              </div>
             </div>
           </a>
         </div>
 
         {/* Right: Scroll Down Button */}
         <div className="hidden md:flex pb-2">
-          <button className="w-12 h-12 rounded-full border border-black/20 flex items-center justify-center hover:scale-105 transition-transform text-[#FF4C24]">
-            <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
+          <button className="button-default">
+            <div className="button-default__inner !w-12 !h-12 !p-0">
+              <div className="button-default__background border border-black/20 bg-transparent"></div>
+              <div className="button-default__icon !m-0 text-[#FF4C24]">
+                <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
+              </div>
+            </div>
           </button>
         </div>
       </div>

@@ -118,7 +118,7 @@ const Navbar = () => {
   }, [lastScrollY, isMenuOpen])
 
   return (
-    <nav className={`fixed left-0 top-0 z-40 w-full px-4 py-4 font-[Inter] sm:px-6 lg:px-10 transition-transform duration-500 ease-in-out ${isVisible ? 'translate-y-0' : '-translate-y-full'}`}>
+    <nav className={`fixed left-0 top-0 z-40 box-border w-full px-4 py-4 font-[Inter] sm:px-6 lg:px-10 transition-transform duration-500 ease-in-out ${isVisible ? 'translate-y-0' : '-translate-y-full'}`}>
       <div className="mx-auto flex max-w-[1920px] items-center justify-between gap-4">
         <a
           aria-current="page"

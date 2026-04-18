@@ -1,3 +1,5 @@
+import { useEffect } from 'react'
+import { createPortal } from 'react-dom'
 import { navLinks } from '../../data/data'
 
 const FireIcon = () => (
@@ -14,7 +16,7 @@ const FireIcon = () => (
 const SmallLogo = () => (
   <svg
     aria-hidden="true"
-    className="h-7 w-16"
+    className="h-10 w-24"
     viewBox="0 0 208 84"
     xmlns="http://www.w3.org/2000/svg"
   >
@@ -31,109 +33,192 @@ const SmallLogo = () => (
   </svg>
 )
 
-const MenuLink = ({ href, label, ariaLabel, onClick }) => (
-  <a
-    aria-label={ariaLabel}
-    className="rounded-xl bg-white px-5 py-2.5 text-[0.95rem] font-bold text-[#131313] no-underline transition-all duration-300 hover:bg-[#131313] hover:text-[#f0ece5] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#131313]"
-    href={href}
-    onClick={onClick}
-  >
-    {label}
-  </a>
-)
-
-const MobileGetResultsButton = ({ onClick }) => (
-  <a
-    className="inline-flex items-center gap-2 rounded-xl bg-[#131313] px-5 py-3 text-[0.9rem] font-bold text-[#f0ece5] no-underline transition-all duration-300 hover:bg-[#333] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#faf4ec] focus-visible:ring-offset-2 focus-visible:ring-offset-[#ffb8eb]"
-    href="#contact"
-    onClick={onClick}
-  >
-    <span>Get Results</span>
-    <span className="flex items-center justify-center rounded-lg bg-white p-1.5">
-      <span className="text-[#ff4c24]">
-        <FireIcon />
-      </span>
-    </span>
-  </a>
-)
-
 const HamburgerMenu = ({ isOpen, onToggle, onClose }) => {
+  // Lock body AND html scroll when menu is open
+  useEffect(() => {
+    if (isOpen) {
+      document.documentElement.style.overflow = 'hidden'
+      document.body.style.overflow = 'hidden'
+      document.documentElement.style.height = '100vh'
+      document.body.style.height = '100vh'
+    } else {
+      document.documentElement.style.overflow = ''
+      document.body.style.overflow = ''
+      document.documentElement.style.height = ''
+      document.body.style.height = ''
+    }
+    return () => {
+      document.documentElement.style.overflow = ''
+      document.body.style.overflow = ''
+      document.documentElement.style.height = ''
+      document.body.style.height = ''
+    }
+  }, [isOpen])
+
   return (
     <>
       {/* Hamburger trigger */}
       <button
         aria-expanded={isOpen}
         aria-label={isOpen ? 'Close menu' : 'Open menu'}
-        className="relative z-50 flex h-12 w-12 items-center justify-center rounded-full bg-[#faf4ec] transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#131313] focus-visible:ring-offset-2 focus-visible:ring-offset-[#faf4ec] lg:hidden"
+        className="navbar_menu-trigger"
         onClick={onToggle}
         type="button"
       >
-        <span className="relative block h-3 w-6">
-          <span
-            className={`absolute left-0 h-[2px] w-6 rounded-full bg-[#131313] transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] ${
-              isOpen
-                ? 'top-1/2 -translate-y-1/2 rotate-45'
-                : 'top-0'
-            }`}
-          />
-          <span
-            className={`absolute left-0 h-[2px] w-6 rounded-full bg-[#131313] transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] ${
-              isOpen
-                ? 'top-1/2 -translate-y-1/2 -rotate-45'
-                : 'bottom-0'
-            }`}
-          />
-        </span>
+        <div className={`navbar_menu-line is-top ${isOpen ? 'is-open' : ''}`} />
+        <div className={`navbar_menu-line is-bottom ${isOpen ? 'is-open' : ''}`} />
       </button>
 
-      {/* Full-screen pink overlay */}
-      <div
-        className={`fixed inset-0 z-40 bg-[#ffb8eb] transition-opacity duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] lg:hidden ${
-          isOpen ? 'pointer-events-auto opacity-100' : 'pointer-events-none opacity-0'
-        }`}
-      />
-
-      {/* Content wrapper - 3 distinct sections */}
-      <div
-        className={`fixed inset-0 z-[45] flex flex-col transition-opacity duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] lg:hidden ${
-          isOpen ? 'pointer-events-auto opacity-100' : 'pointer-events-none opacity-0'
-        }`}
-      >
-        {/* Section 1: Top bar (logo + close) */}
-        <div className="flex-none px-6 pt-6">
-          <div className="flex items-center justify-between">
-            <a href="/" className="no-underline" onClick={onClose}>
+      {/* Portal overlay at body level */}
+      {createPortal(
+        <div
+          style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            width: '100%',
+            height: '100dvh',
+            boxSizing: 'border-box',
+            zIndex: 9999,
+            backgroundColor: '#FCB8FA',
+            display: 'flex',
+            flexDirection: 'column',
+            opacity: isOpen ? 1 : 0,
+            pointerEvents: isOpen ? 'auto' : 'none',
+            transform: isOpen ? 'translateY(0) scale(1)' : 'translateY(-2rem) scale(0.985)',
+            transformOrigin: 'top center',
+            transition: 'opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1), transform 0.65s cubic-bezier(0.22, 1, 0.36, 1)',
+            overflow: 'hidden',
+            margin: 0,
+            padding: 0,
+            paddingBottom: 'env(safe-area-inset-bottom, 0px)',
+          }}
+        >
+          {/* Top bar */}
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              padding: '1rem 1.25rem',
+              flexShrink: 0,
+              opacity: isOpen ? 1 : 0,
+              transform: isOpen ? 'translateY(0)' : 'translateY(-0.9rem)',
+              transition: 'opacity 0.38s ease, transform 0.55s cubic-bezier(0.22, 1, 0.36, 1)',
+              transitionDelay: isOpen ? '70ms' : '0ms',
+            }}
+          >
+            <a href="/" style={{ textDecoration: 'none' }} onClick={onClose}>
               <SmallLogo />
             </a>
             <button
               aria-label="Close menu"
-              className="flex h-8 w-8 items-center justify-center rounded-lg bg-white text-[#131313] transition-colors duration-300 hover:bg-[#f0ece5] focus:outline-none"
               onClick={onClose}
               type="button"
+              style={{
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                width: 48, height: 48, borderRadius: '0.75em',
+                backgroundColor: '#fff', border: 'none', cursor: 'pointer', color: '#131313',
+              }}
             >
-              <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M18 6L6 18" />
+                <path d="M6 6l12 12" />
               </svg>
             </button>
           </div>
-        </div>
 
-        {/* Section 2: Centered nav links */}
-        <div className="flex-1 flex items-center justify-center">
-          <div className="flex flex-col items-center gap-3">
-            {navLinks.map((link) => (
-              <MenuLink key={link.href} {...link} onClick={onClose} />
-            ))}
-          </div>
-        </div>
+          {/* Center: links */}
+          <div
+            style={{
+              flex: 1,
+              minHeight: 0,
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'space-between',
+              gap: '1.25rem',
+              padding: '0 1.25rem 1rem',
+              opacity: isOpen ? 1 : 0,
+              transform: isOpen ? 'translateY(0)' : 'translateY(-1rem)',
+              transition: 'opacity 0.42s ease, transform 0.62s cubic-bezier(0.22, 1, 0.36, 1)',
+              transitionDelay: isOpen ? '120ms' : '0ms',
+            }}
+          >
+            <div
+              style={{
+                flex: 1,
+                minHeight: 0,
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: '0.5em',
+                overflowY: 'auto',
+                overflowX: 'hidden',
+                padding: '0.25rem 0',
+              }}
+            >
+              {navLinks.map((link) => (
+                <a
+                  key={link.href}
+                  aria-label={link.ariaLabel}
+                  href={link.href}
+                  onClick={onClose}
+                  style={{
+                    display: 'inline-block', padding: '0.6rem 1.5rem',
+                    backgroundColor: '#fff', borderRadius: '0.75em',
+                    color: '#131313', fontSize: '1rem', fontWeight: 600,
+                    textDecoration: 'none', flexShrink: 0,
+                    maxWidth: '100%',
+                    opacity: isOpen ? 1 : 0,
+                    transform: isOpen ? 'translateY(0) scale(1)' : 'translateY(-0.85rem) scale(0.985)',
+                    transition: 'opacity 0.4s ease, transform 0.6s cubic-bezier(0.22, 1, 0.36, 1)',
+                  }}
+                >
+                  {link.label}
+                </a>
+              ))}
+            </div>
 
-        {/* Section 3: Bottom Get Results */}
-        <div className="flex-none pb-10">
-          <div className="flex justify-center">
-            <MobileGetResultsButton onClick={onClose} />
+            <div
+              style={{
+                flexShrink: 0,
+                display: 'flex',
+                justifyContent: 'center',
+                opacity: isOpen ? 1 : 0,
+                transform: isOpen ? 'translateY(0)' : 'translateY(1rem)',
+                transition: 'opacity 0.42s ease, transform 0.62s cubic-bezier(0.22, 1, 0.36, 1)',
+                transitionDelay: isOpen ? '190ms' : '0ms',
+              }}
+            >
+              <a
+                href="#contact"
+                onClick={onClose}
+                style={{
+                  display: 'inline-flex', alignItems: 'center', gap: '0.5rem',
+                  padding: '0.75rem 1.25rem',
+                  backgroundColor: '#131313', color: '#FAF4EC',
+                  borderRadius: '0.75em', fontSize: '0.95rem', fontWeight: 600,
+                  textDecoration: 'none',
+                  maxWidth: '100%',
+                }}
+              >
+                <span>Get Results</span>
+                <span style={{
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  backgroundColor: '#fff', borderRadius: '0.5em', padding: '0.3em',
+                  color: '#FF4C24',
+                }}>
+                  <FireIcon />
+                </span>
+              </a>
+            </div>
           </div>
-        </div>
-      </div>
+        </div>,
+        document.body
+      )}
     </>
   )
 }
