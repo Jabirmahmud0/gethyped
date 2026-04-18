@@ -131,7 +131,7 @@ function FooterBgShape() {
       width="100%"
       viewBox="0 0 1860 386"
       fill="none"
-      className="absolute bottom-0 left-0 w-full"
+      className="absolute inset-0 w-full h-full"
       preserveAspectRatio="none"
     >
       <path
@@ -145,44 +145,67 @@ function FooterBgShape() {
 export default function Footer() {
   return (
     <footer className="bg-[#FAF4EC] relative w-full">
+      {/* Outer wrapper to provide gaps on both sides identical to body constraints */}
+      <div className="padding-global">
+        <div className="container-col-12 relative w-full">
 
-      {/* The diagonal beige background — exact SVG from original */}
-      <FooterBgShape />
+          {/* The diagonal beige background, constrained by the container */}
+          <div className="absolute inset-0 z-0">
+            <FooterBgShape />
+          </div>
 
-      {/* ---- ALL FOOTER CONTENT sits on top of the bg shape ---- */}
-      <div className="relative z-10 px-6 md:px-10 lg:px-16 pt-16 pb-8">
+          {/* ---- ALL FOOTER CONTENT sits on top of the bg shape ---- */}
+          <div className="relative z-10 pr-6 md:pr-10 lg:pr-16 pt-16 md:pt-24 pb-8">
 
         {/* Flex container for the layout */}
-        <div className="flex flex-col xl:flex-row justify-between xl:items-end gap-12 lg:gap-16">
+        {/* Flex container for the layout - fully centered on mobile, split on desktop */}
+        <div className="flex flex-col items-center xl:flex-row justify-between xl:items-end gap-8 lg:gap-16 text-center xl:text-left">
 
-          {/* LEFT SIDE: Logo only (restricted to its area) */}
-          <div className="flex-shrink-0 self-end" style={{ transform: 'translateY(32px)' }}>
-            <FooterLogo />
+          {/* LEFT SIDE/TOP: Logo */}
+          <div className="flex-shrink-0 order-1 xl:order-1 xl:self-end" style={{ transform: 'translateY(8px)' }}>
+            <div className="mb-8 xl:mb-0 transform xl:translate-y-8">
+              <FooterLogo />
+            </div>
+          </div>
+
+          {/* CENTER/MOBILE ONLY: CTA Button Group */}
+          <div className="order-2 xl:hidden mb-10 w-full max-w-[320px]">
+            <a
+              href="/contact"
+              className="flex items-center justify-between bg-[#FF4C24] text-white font-bold py-3 px-6 rounded-2xl w-full group hover:scale-[1.02] transition-transform"
+            >
+              <span className="text-[1.1rem]">Get Hyped! Neem contact op</span>
+              <div className="bg-white p-2 rounded-xl flex items-center justify-center ml-2">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="#FF4C24">
+                  <path d="M17.55 11.2C17.15 10.74 16.7 10.35 16.27 9.95C15.15 8.94 13.88 8.16 12.82 7.1C10.34 4.67 9.8 0.67 11.37 -2.4C9.79 -2.01 8.42 -1.15 7.24 -0.21C2.93 3.26 1.25 9.36 3.27 14.6C3.34 14.77 3.4 14.93 3.4 15.15C3.4 15.52 3.15 15.85 2.82 15.98C2.44 16.15 2.05 16.05 1.73 15.78C1.64 15.7 1.56 15.61 1.5 15.5C-0.38 13.12 -0.68 9.71 0.58 6.98C-2.19 9.25 -3.7 13.08 -3.49 16.7C-3.39 17.53 -3.29 18.36 -3.01 19.2C-2.78 20.2 -2.33 21.2 -1.83 22.08C-0.03 24.96 3.08 27.03 6.43 27.45C9.99 27.9 13.8 27.25 16.54 24.78C19.59 22.02 20.65 17.58 19.09 13.78L18.87 13.35C18.52 12.58 17.55 11.2 17.55 11.2ZM12.29 21.75C11.83 22.15 11.06 22.58 10.46 22.75C8.6 23.42 6.73 22.48 5.63 21.38C7.61 20.91 8.79 19.43 9.14 17.95C9.42 16.62 8.89 15.52 8.67 14.23C8.47 13 8.5 11.95 8.95 10.8C9.26 11.43 9.6 12.06 10 12.56C11.28 14.23 13.3 14.96 13.73 17.23C13.8 17.46 13.83 17.7 13.83 17.95C13.83 19.32 13.23 20.82 12.29 21.75Z" />
+                </svg>
+              </div>
+            </a>
           </div>
 
           {/* RIGHT SIDE: Two columns + Sticker */}
-          <div className="flex flex-col sm:flex-row xl:justify-end gap-10 sm:gap-16 lg:gap-24 relative" style={{ transform: 'translateY(40px)' }}>
+          <div className="flex flex-col sm:flex-row items-center xl:items-end xl:justify-end gap-10 sm:gap-16 lg:gap-24 relative order-3 xl:order-2" style={{ transform: 'translateY(16px)' }}>
 
-            {/* Sticker positioned top right relative to this right container */}
-            <div className="absolute -top-32 right-0 sm:-right-8 md:-top-40 md:-right-8">
+            {/* Sticker positioned top right relative to this right container - hidden on small mobile to match image */}
+            <div className="hidden md:block absolute -top-32 right-0 sm:-right-8 md:-top-40 md:-right-8">
               <Sticker />
             </div>
 
             {/* Column 1: Links & Follow us & Copyright */}
-            <div className="flex flex-col items-start relative z-10 mt-12 sm:mt-0 justify-between">
+            <div className="flex flex-col items-center xl:items-start relative z-10 justify-start">
               
               {/* Top part: Navigation and Socials */}
-              <div className="flex flex-col gap-6">
+              <div className="flex flex-col items-center xl:items-start gap-6">
                 {/* Nav pills */}
-                <div className="flex flex-wrap items-center gap-2">
+                <div className="flex flex-wrap justify-center xl:justify-start items-center gap-2 max-w-[280px] xl:max-w-none">
                   {navLinks.map((link) => (
                     <FooterNavLink key={link.href} {...link} />
                   ))}
                 </div>
 
                 {/* Follow us + social icons */}
-                <div className="flex items-center gap-4">
-                  <span className="text-sm font-bold text-black">Follow us</span>
+                <div className="flex flex-col xl:flex-row items-center gap-4">
+                  <span className="text-sm font-bold text-black xl:hidden hidden">Follow us</span>
                   <div className="flex items-center gap-2">
                     {socialLinks.map((s) => (
                       <a
@@ -191,7 +214,7 @@ export default function Footer() {
                         target="_blank"
                         rel="noopener noreferrer"
                         aria-label={s.label}
-                        className="w-9 h-9 rounded-full bg-white hover:bg-black hover:text-white transition-colors flex items-center justify-center text-black"
+                        className="w-11 h-11 xl:w-9 xl:h-9 rounded-full bg-white hover:bg-black hover:text-white transition-colors flex items-center justify-center text-black shadow-sm"
                       >
                         {s.icon}
                       </a>
@@ -201,7 +224,7 @@ export default function Footer() {
               </div>
 
               {/* Bottom part: Copyright (below Follow us) */}
-              <div className="flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-6 text-xs text-black/50 font-medium mt-12 xl:mt-24">
+              <div className="flex flex-col items-center xl:items-start gap-2 text-xs text-black/50 font-medium mt-10 xl:mt-22">
                 <span>© 2025 Get Hyped</span>
                 <a
                   href="https://dylanbrouwer.design/"
@@ -215,31 +238,31 @@ export default function Footer() {
             </div>
 
             {/* Column 2: Contact, Adres stacked & Privacy */}
-            <div className="flex flex-col shrink-0 items-start relative z-10 justify-between">
+            <div className="flex flex-col items-center xl:items-start relative z-10 justify-start">
               
               {/* Top part: Contact and Adres */}
-              <div className="flex flex-col gap-6 text-sm">
+              <div className="flex flex-col items-center xl:items-start gap-6 text-sm">
                 {/* Contact */}
-                <div className="flex flex-col gap-1">
-                  <p className="font-bold text-black mb-1">Contact</p>
-                  <a href="mailto:info@gethyped.nl" className="text-black hover:opacity-70 transition-opacity">
+                <div className="flex flex-col items-center xl:items-start gap-1">
+                  <p className="font-bold text-black mb-1 hidden xl:block">Contact</p>
+                  <a href="mailto:info@gethyped.nl" className="text-black hover:opacity-70 transition-opacity font-medium xl:font-normal">
                     info@gethyped.nl
                   </a>
-                  <a href="tel:+31615337496" className="text-black hover:opacity-70 transition-opacity">
+                  <a href="tel:+31615337496" className="text-black hover:opacity-70 transition-opacity font-medium xl:font-normal">
                     +31 6 1533 7496
                   </a>
                 </div>
                 
                 {/* Adres */}
-                <div className="flex flex-col gap-1">
-                  <p className="font-bold text-black mb-1">Adres</p>
-                  <p className="text-black">Beltrumsestraat 6,</p>
-                  <p className="text-black">7141 AL Groenlo</p>
+                <div className="flex flex-col items-center xl:items-start gap-1">
+                  <p className="font-bold text-black mb-1 hidden xl:block">Adres</p>
+                  <p className="text-black font-medium xl:font-normal">Beltrumsestraat 6,</p>
+                  <p className="text-black font-medium xl:font-normal text-center xl:text-left">7141 AL Groenlo</p>
                 </div>
               </div>
 
               {/* Bottom part: Privacyvoorwaarden (below Adres) */}
-              <div className="mt-12 xl:mt-24">
+              <div className="mt-8 xl:mt-8">
                 <a href="/privacyvoorwaarden" className="text-xs text-black/50 font-medium hover:text-black transition-colors">
                   Privacyvoorwaarden
                 </a>
@@ -247,6 +270,8 @@ export default function Footer() {
             </div>
 
           </div>
+        </div>
+      </div>
         </div>
       </div>
     </footer>
