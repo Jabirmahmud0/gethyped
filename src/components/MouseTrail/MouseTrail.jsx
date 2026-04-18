@@ -114,7 +114,7 @@ export default function MouseTrail() {
 
       {/* Heading */}
       <h2 className="text-5xl md:text-8xl font-extrabold text-black text-center z-10 relative pointer-events-none select-none">
-        Let's Get Hyped!
+        Let&apos;s Get Hyped!
       </h2>
 
       {/* Buttons */}
