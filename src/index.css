@@ -15,7 +15,19 @@ body,
 #root {
   width: 100%;
   max-width: 100%;
+}
+
+#root {
   overflow-x: clip;
+}
+
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
 }
 
 main,

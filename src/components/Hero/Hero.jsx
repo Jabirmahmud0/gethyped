@@ -69,7 +69,7 @@ export default function Hero() {
             {/* Hero Title */}
             <div className="hero-title">
               <h1 className="heading-xxl">
-                Get Hyped. Get Noticed. Get Results.
+                Get Hyped. Get<br />Noticed. Get Results.
               </h1>
               <div className="max-width-60ch">
                 <p className="paragraph-l">

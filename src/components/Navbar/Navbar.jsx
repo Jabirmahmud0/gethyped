@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react'
 import { navLinks } from '../../data/data'
-import { useMenuOpen } from '../../hooks/useMenuOpen'
 import HamburgerMenu from '../HamburgerMenu/HamburgerMenu'
 
 const Logo = () => (
@@ -87,8 +86,7 @@ const DesktopGetResultsButton = () => (
   </div>
 )
 
-const Navbar = () => {
-  const { isMenuOpen, toggleMenu, closeMenu } = useMenuOpen()
+const Navbar = ({ isMenuOpen, toggleMenu, closeMenu }) => {
   const [isVisible, setIsVisible] = useState(true)
   const [lastScrollY, setLastScrollY] = useState(0)
 

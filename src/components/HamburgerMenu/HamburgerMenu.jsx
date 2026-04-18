@@ -1,4 +1,3 @@
-import { useEffect } from 'react'
 import { createPortal } from 'react-dom'
 import { navLinks } from '../../data/data'
 
@@ -34,27 +33,6 @@ const SmallLogo = () => (
 )
 
 const HamburgerMenu = ({ isOpen, onToggle, onClose }) => {
-  // Lock body AND html scroll when menu is open
-  useEffect(() => {
-    if (isOpen) {
-      document.documentElement.style.overflow = 'hidden'
-      document.body.style.overflow = 'hidden'
-      document.documentElement.style.height = '100vh'
-      document.body.style.height = '100vh'
-    } else {
-      document.documentElement.style.overflow = ''
-      document.body.style.overflow = ''
-      document.documentElement.style.height = ''
-      document.body.style.height = ''
-    }
-    return () => {
-      document.documentElement.style.overflow = ''
-      document.body.style.overflow = ''
-      document.documentElement.style.height = ''
-      document.body.style.height = ''
-    }
-  }, [isOpen])
-
   return (
     <>
       {/* Hamburger trigger */}

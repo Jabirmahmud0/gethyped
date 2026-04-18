@@ -77,23 +77,23 @@ function ExpertiseCard({ item, index }) {
       className="sticky top-0 h-screen w-full overflow-hidden px-4 sm:px-6 lg:px-10 py-4"
       style={{ zIndex: index + 1 }}
     >
-      <div className={`w-full h-full ${item.bg} ${item.textColor} rounded-[2rem] px-5 sm:px-6 md:px-12 py-8 md:py-10 flex flex-col justify-between overflow-hidden`}>
+      <div className={`w-full h-full ${item.bg} ${item.textColor} rounded-[2rem] px-5 sm:px-6 md:px-12 pt-2 md:pt-3 pb-6 md:pb-8 flex flex-col justify-start gap-2 md:gap-4 overflow-hidden`}>
 
         {/* TOP ROW — label + title + number */}
         <div className="flex flex-col gap-6 md:flex-row md:items-start md:justify-between">
-          <div className="flex max-w-full flex-col gap-5">
+          <div className="flex max-w-full flex-col gap-3">
             {/* Label badge */}
             <span className={`inline-block ${item.labelBg} text-black text-base font-semibold px-5 py-2 rounded-lg w-fit`}>
               {item.label}
             </span>
             {/* Big title */}
-            <h2 className="max-w-full break-words text-4xl sm:text-5xl md:text-8xl lg:text-9xl font-extrabold leading-none tracking-tight">
+            <h2 className="max-w-full break-words text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-extrabold leading-none tracking-tight">
               {item.title}
             </h2>
           </div>
 
           {/* Big faded number — top right */}
-          <div className={`self-end md:self-auto text-6xl sm:text-7xl md:text-[12rem] font-extrabold ${item.numberColor} leading-none select-none`}>
+          <div className={`self-end md:self-auto text-5xl sm:text-6xl md:text-[8rem] font-extrabold ${item.numberColor} leading-none select-none`}>
             {item.number}
           </div>
         </div>
@@ -102,8 +102,8 @@ function ExpertiseCard({ item, index }) {
         <div className="flex flex-col md:flex-row items-start md:items-end justify-between gap-8">
 
           {/* Bottom left — subtitle + desc + button */}
-          <div className="w-full md:w-1/2 flex flex-col gap-5">
-            <h3 className="max-w-full break-words text-2xl md:text-3xl font-bold">
+          <div className="w-full md:w-1/2 flex flex-col gap-3">
+            <h3 className="max-w-full break-words text-xl md:text-2xl font-bold">
               {item.subtitle}
             </h3>
             <p className="max-w-md text-base sm:text-lg md:text-xl opacity-80 leading-relaxed">
@@ -130,8 +130,8 @@ function ExpertiseCard({ item, index }) {
           </div>
 
           {/* Bottom right — video */}
-          <div className="w-full md:w-[380px] lg:w-[440px] flex-shrink-0">
-            <div className="rounded-2xl overflow-hidden aspect-[4/5] w-full shadow-lg">
+          <div className="w-full md:w-[320px] lg:w-[400px] flex-shrink-0">
+            <div className={`rounded-lg overflow-hidden aspect-[4/5] w-full shadow-lg border-4 ${index === 0 ? 'border-[#FF4C24]' : 'border-white'} ${index % 2 === 0 ? 'rotate-2' : '-rotate-2'}`}>
               <video
                 muted
                 loop
@@ -151,7 +151,7 @@ function ExpertiseCard({ item, index }) {
 
 export default function Expertises() {
   return (
-    <section id="expertises" className="relative w-full overflow-x-hidden">
+    <section id="expertises" className="relative w-full">
       {expertises.map((item, i) => (
         <ExpertiseCard
           key={item.id}

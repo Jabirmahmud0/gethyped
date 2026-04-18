@@ -11,10 +11,10 @@ export default function Results() {
       </div>
 
       {/* Bottom Section */}
-      <div className="flex flex-col md:flex-row items-end justify-between gap-12 md:gap-8">
+      <div className="flex flex-col md:flex-row items-end justify-start gap-12 md:gap-20">
         {/* Left: Image */}
         <div className="w-full md:w-auto flex justify-center md:justify-start">
-          <div className="rounded-3xl overflow-hidden aspect-[4/5] w-full max-w-[320px]">
+          <div className="rounded-lg overflow-hidden aspect-[4/5] w-full max-w-[320px] border-4 border-white shadow-lg rotate-2">
             <video muted loop playsInline autoPlay className="w-full h-full object-cover md:hidden">
               <source src="https://gethyped.b-cdn.net/New%20Reach/new-reach-loop.mp4" type="video/mp4" />
             </video>
