@@ -17,6 +17,10 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+a {
+  text-decoration: none;
+}
+
 /* Hide scrollbar */
 .scrollbar-hide {
   -ms-overflow-style: none;
@@ -33,6 +37,15 @@ body {
 
 .animate-marquee {
   animation: marquee 30s linear infinite;
+}
+
+@keyframes spin-slow {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.animate-spin-slow {
+  animation: spin-slow 8s linear infinite;
 }
 
 /* Button Default (Scale + Tilt) */
@@ -240,4 +253,33 @@ body {
     opacity: 1;
     transition-delay: .1s;
   }
+}
+
+/* Footer nav button variant */
+.button-color-swoosh.is-footer {
+  color: #1a1a1a;
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.button-color-swoosh.is-footer .button-color-swoosh_bg {
+  background-color: #fff;
+  border-radius: 999px;
+}
+
+.button-color-swoosh.is-footer .button-color-swoosh_inner {
+  padding: 0.5rem 1.25rem;
+}
+
+.button-color-swoosh.is-footer .button-color-swoosh_bg-inner.is-first {
+  background-color: #1a1a1a;
+}
+
+.button-color-swoosh.is-footer .button-color-swoosh_bg-inner.is-second {
+  background-color: #1a1a1a;
+}
+
+.button-color-swoosh.is-footer .button-color-swoosh_inner::after {
+  color: #fff;
 }
