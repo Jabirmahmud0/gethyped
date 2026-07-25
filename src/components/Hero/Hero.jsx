@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import ViewportVideo from '../ViewportVideo/ViewportVideo';
 
 export default function Hero() {
   const [hoveredIndex, setHoveredIndex] = useState(null);
@@ -126,15 +127,13 @@ export default function Hero() {
                             loading="lazy"
                           />
                         )}
-                        <video
+                        <ViewportVideo
+                          src={card.src}
                           muted
                           loop
                           playsInline
-                          autoPlay
                           className="video"
-                        >
-                          <source src={card.src} type="video/mp4" />
-                        </video>
+                        />
                       </div>
                     );
                   })}

@@ -19,14 +19,11 @@ const App = () => {
     const lenis = new Lenis({
       autoRaf: true,
       anchors: true,
-      allowNestedScroll: true,
-      lerp: 0.08,
-      duration: 1.1,
+      lerp: 0.1,
       smoothWheel: true,
-      syncTouch: true,
-      syncTouchLerp: 0.1,
-      touchMultiplier: 1.1,
-      wheelMultiplier: 0.95,
+      syncTouch: false,
+      wheelMultiplier: 0.85,
+      overscroll: false,
     })
     lenisRef.current = lenis
 

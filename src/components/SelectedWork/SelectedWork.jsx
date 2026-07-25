@@ -1,5 +1,7 @@
 
 
+import { useRef } from 'react';
+
 const works = [
   {
     id: 1,
@@ -52,11 +54,25 @@ function ArrowRight() {
 }
 
 function WorkCard({ work }) {
+  const videoRef = useRef(null);
+
+  const playPreview = () => {
+    videoRef.current?.play().catch(() => {});
+  };
+
+  const pausePreview = () => {
+    videoRef.current?.pause();
+  };
+
   return (
     <a
       href={work.link}
       className="group block relative w-full max-w-full aspect-[3/4.5] md:aspect-[3/4] rounded-4xl overflow-hidden transition-all duration-200 will-change-transform shadow-md border-[8px] md:hover:-translate-y-3 md:hover:-rotate-[2.5deg] md:hover:scale-[1.03]"
       style={{ borderColor: work.colorCode }}
+      onMouseEnter={playPreview}
+      onMouseLeave={pausePreview}
+      onFocus={playPreview}
+      onBlur={pausePreview}
     >
       {/* Background Image / Video Container */}
       <div className="absolute inset-0 w-full h-full bg-[#f4f4f4]">
@@ -66,10 +82,11 @@ function WorkCard({ work }) {
           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
         />
         <video
+          ref={videoRef}
           muted
           loop
-          autoPlay
           playsInline
+          preload="metadata"
           className="absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-100 transition-opacity duration-500"
           src={work.videoUrl}
         />

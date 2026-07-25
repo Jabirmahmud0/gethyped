@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { navLinks } from '../../data/data'
 import HamburgerMenu from '../HamburgerMenu/HamburgerMenu'
 
@@ -88,32 +88,51 @@ const DesktopGetResultsButton = () => (
 
 const Navbar = ({ isMenuOpen, toggleMenu, closeMenu }) => {
   const [isVisible, setIsVisible] = useState(true)
-  const [lastScrollY, setLastScrollY] = useState(0)
+  const lastScrollYRef = useRef(0)
+  const frameRef = useRef(null)
+  const menuOpenRef = useRef(isMenuOpen)
+
+  useEffect(() => {
+    menuOpenRef.current = isMenuOpen
+
+    if (isMenuOpen) {
+      setIsVisible(true)
+    }
+  }, [isMenuOpen])
 
   useEffect(() => {
     const handleScroll = () => {
-      const currentScrollY = window.scrollY
-
-      // Always show if menu is open or at the very top
-      if (isMenuOpen || currentScrollY < 10) {
-        setIsVisible(true)
-        setLastScrollY(currentScrollY)
+      if (frameRef.current !== null) {
         return
       }
 
-      // Scrolling down: hide. Scrolling up: show.
-      if (currentScrollY > lastScrollY && currentScrollY > 100) {
-        setIsVisible(false)
-      } else {
-        setIsVisible(true)
-      }
-      
-      setLastScrollY(currentScrollY)
+      frameRef.current = window.requestAnimationFrame(() => {
+        frameRef.current = null
+
+        const currentScrollY = window.scrollY
+        const scrollDelta = currentScrollY - lastScrollYRef.current
+
+        if (menuOpenRef.current || currentScrollY < 10) {
+          setIsVisible(true)
+        } else if (Math.abs(scrollDelta) >= 2) {
+          setIsVisible(currentScrollY <= 100 || scrollDelta < 0)
+        }
+
+        lastScrollYRef.current = currentScrollY
+      })
     }
 
+    lastScrollYRef.current = window.scrollY
     window.addEventListener('scroll', handleScroll, { passive: true })
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [lastScrollY, isMenuOpen])
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+
+      if (frameRef.current !== null) {
+        window.cancelAnimationFrame(frameRef.current)
+      }
+    }
+  }, [])
 
   return (
     <nav className={`fixed left-0 top-0 z-40 box-border w-full px-4 py-4 font-[Inter] sm:px-6 lg:px-10 transition-transform duration-500 ease-in-out ${isVisible ? 'translate-y-0' : '-translate-y-full'}`}>

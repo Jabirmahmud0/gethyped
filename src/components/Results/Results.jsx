@@ -1,4 +1,6 @@
 
+import ViewportVideo from '../ViewportVideo/ViewportVideo';
+
 export default function Results() {
   return (
     <section className="py-24 px-4 md:px-8 max-w-[1400px] mx-auto overflow-x-hidden">
@@ -14,9 +16,13 @@ export default function Results() {
         {/* Left: Image */}
         <div className="w-full md:w-auto flex justify-center md:justify-start">
           <div className="rounded-lg overflow-hidden aspect-[4/5] w-full max-w-[320px] border-4 border-white shadow-lg rotate-2">
-            <video muted loop playsInline autoPlay className="w-full h-full object-cover md:hidden">
-              <source src="https://gethyped.b-cdn.net/New%20Reach/new-reach-loop.mp4" type="video/mp4" />
-            </video>
+            <ViewportVideo
+              src="https://gethyped.b-cdn.net/New%20Reach/new-reach-loop.mp4"
+              muted
+              loop
+              playsInline
+              className="w-full h-full object-cover md:hidden"
+            />
             <img src="https://cdn.prod.website-files.com/6848603da8e6ac95794b7498/6894757aa6dd3f84f6e463a2_Anniek%20Bril.webp" alt="Anniek Bril" className="w-full h-full object-cover hidden md:block" />
           </div>
         </div>

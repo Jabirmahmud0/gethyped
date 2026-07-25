@@ -131,10 +131,9 @@ function ExpertiseCard({ item, index }) {
           {/* Bottom right — video */}
           <div className="w-full md:w-[320px] lg:w-[400px] flex-shrink-0">
             <div className={`rounded-lg overflow-hidden aspect-[4/5] w-full shadow-lg border-4 ${index === 0 ? 'border-[#FF4C24]' : 'border-white'} ${index % 2 === 0 ? 'rotate-2' : '-rotate-2'}`}>
-              <video
+              <ViewportVideo
                 muted
                 loop
-                autoPlay
                 playsInline
                 className="w-full h-full object-cover"
                 src={item.videoUrl}
@@ -161,3 +160,4 @@ export default function Expertises() {
     </section>
   );
 }
+import ViewportVideo from '../ViewportVideo/ViewportVideo';
